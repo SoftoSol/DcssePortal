@@ -1,0 +1,5 @@
+C:\Users\636\source\repos\DcssePortal\DcssePortal.Model\bin\Debug\DcssePortal.Model.dll
+C:\Users\636\source\repos\DcssePortal\DcssePortal.Model\bin\Debug\DcssePortal.Model.pdb
+C:\Users\636\source\repos\DcssePortal\DcssePortal.Model\obj\Debug\DcssePortal.Model.csproj.CoreCompileInputs.cache
+C:\Users\636\source\repos\DcssePortal\DcssePortal.Model\obj\Debug\DcssePortal.Model.dll
+C:\Users\636\source\repos\DcssePortal\DcssePortal.Model\obj\Debug\DcssePortal.Model.pdb

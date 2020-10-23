@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -9,6 +6,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DcssePortal.Web.Models;
+using DcssePortal.Model;
+using DcssePortal.UnitOfWork;
+using System.Web.UI.WebControls;
 
 namespace DcssePortal.Web.Controllers
 {
@@ -68,10 +68,8 @@ namespace DcssePortal.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+      if (!ModelState.IsValid) return View(model);
+            
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -347,6 +345,8 @@ namespace DcssePortal.Web.Controllers
             }
         }
 
+
+    
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]

@@ -1,0 +1,5 @@
+C:\Users\636\source\repos\DcssePortal\DcssePortal.Repositories\bin\Debug\DcssePortal.Repositories.dll
+C:\Users\636\source\repos\DcssePortal\DcssePortal.Repositories\bin\Debug\DcssePortal.Repositories.pdb
+C:\Users\636\source\repos\DcssePortal\DcssePortal.Repositories\obj\Debug\DcssePortal.Repositories.csproj.CoreCompileInputs.cache
+C:\Users\636\source\repos\DcssePortal\DcssePortal.Repositories\obj\Debug\DcssePortal.Repositories.dll
+C:\Users\636\source\repos\DcssePortal\DcssePortal.Repositories\obj\Debug\DcssePortal.Repositories.pdb
