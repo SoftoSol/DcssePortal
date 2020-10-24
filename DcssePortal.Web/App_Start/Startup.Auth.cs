@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using DcssePortal.Web.Models;
+using DcssePortal.Data;
+using DcssePortal.Model;
 
 namespace DcssePortal.Web
 {
