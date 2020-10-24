@@ -7,14 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DcssePortal.Model
-{[Table("tCoursesScheme")]
-    public class CoursesScheme
+{   [Table("tCourseContent")]
+   public class CourseContent
     {
         [Key]
         public int ID { get; set; }
         public string CourseCode { get; set; }
-        public string CourseName { get; set; }
-        public int credithour { get; set; }
-        public string SemesterOffer { get; set; }
+        public int CourseTitle { get; set; }
+        public int CourseData { get; set; }
     }
 }
