@@ -57,11 +57,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cApplicationUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DcssePortal.Data\DcssePortal.Data.csproj">
+      <Project>{2d511842-eeec-45bc-b019-2f449af95271}</Project>
+      <Name>DcssePortal.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DcssePortal.Model\DcssePortal.Model.csproj">
+      <Project>{72b88ce8-4fc3-427e-8da4-f5ad5b0853c4}</Project>
+      <Name>DcssePortal.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

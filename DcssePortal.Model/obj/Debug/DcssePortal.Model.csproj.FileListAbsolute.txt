@@ -3,3 +3,17 @@ C:\Users\636\source\repos\DcssePortal\DcssePortal.Model\bin\Debug\DcssePortal.Mo
 C:\Users\636\source\repos\DcssePortal\DcssePortal.Model\obj\Debug\DcssePortal.Model.csproj.CoreCompileInputs.cache
 C:\Users\636\source\repos\DcssePortal\DcssePortal.Model\obj\Debug\DcssePortal.Model.dll
 C:\Users\636\source\repos\DcssePortal\DcssePortal.Model\obj\Debug\DcssePortal.Model.pdb
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\bin\Debug\DcssePortal.Model.dll.config
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\bin\Debug\DcssePortal.Model.dll
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\bin\Debug\DcssePortal.Model.pdb
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\bin\Debug\EntityFramework.dll
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\bin\Debug\EntityFramework.SqlServer.dll
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\bin\Debug\EntityFramework.xml
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\bin\Debug\EntityFramework.SqlServer.xml
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\obj\Debug\DcssePortal.Model.csproj.CopyComplete
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\obj\Debug\DcssePortal.Model.dll
+E:\SoftoSol-Projects\DcsAndSePortal\DcssePortal\DcssePortal.Model\obj\Debug\DcssePortal.Model.pdb
