@@ -7,7 +7,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using DcssePortal.Web.Models;
 using DcssePortal.Model;
-using DcssePortal.UnitOfWork;
 using System.Web.UI.WebControls;
 
 namespace DcssePortal.Web.Controllers

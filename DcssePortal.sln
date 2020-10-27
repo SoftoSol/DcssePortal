@@ -9,10 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DcssePortal.Data", "DcssePo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DcssePortal.Model", "DcssePortal.Model\DcssePortal.Model.csproj", "{72B88CE8-4FC3-427E-8DA4-F5AD5B0853C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DcssePortal.Repositories", "DcssePortal.Repositories\DcssePortal.Repositories.csproj", "{DA65686A-A2EF-4648-85C4-A975F119559E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DcssePortal.UnitOfWork", "DcssePortal.UnitOfWork\DcssePortal.UnitOfWork.csproj", "{97D55E0E-BD8B-4E64-85DA-8ACB4B5208D5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,14 +27,6 @@ Global
 		{72B88CE8-4FC3-427E-8DA4-F5AD5B0853C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72B88CE8-4FC3-427E-8DA4-F5AD5B0853C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72B88CE8-4FC3-427E-8DA4-F5AD5B0853C4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA65686A-A2EF-4648-85C4-A975F119559E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA65686A-A2EF-4648-85C4-A975F119559E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA65686A-A2EF-4648-85C4-A975F119559E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA65686A-A2EF-4648-85C4-A975F119559E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97D55E0E-BD8B-4E64-85DA-8ACB4B5208D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97D55E0E-BD8B-4E64-85DA-8ACB4B5208D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97D55E0E-BD8B-4E64-85DA-8ACB4B5208D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97D55E0E-BD8B-4E64-85DA-8ACB4B5208D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
