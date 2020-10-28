@@ -18,7 +18,13 @@ namespace DcssePortal.Web.Controllers
         // GET: DateSheets
         public ActionResult Index()
         {
+
             return View(db.DateSheets.ToList());
+        }
+        public ActionResult Search()
+        {
+
+            return View();
         }
 
         // GET: DateSheets/Details/5

@@ -8,6 +8,8 @@ using Microsoft.Owin.Security;
 using DcssePortal.Web.Models;
 using DcssePortal.Model;
 using System.Web.UI.WebControls;
+using DcssePortal.Data;
+using System.Collections.Generic;
 
 namespace DcssePortal.Web.Controllers
 {
@@ -16,7 +18,7 @@ namespace DcssePortal.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        public ApplicationDbContext ApplicationDbContext = new ApplicationDbContext();
         public AccountController()
         {
         }
@@ -67,16 +69,20 @@ namespace DcssePortal.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-      if (!ModelState.IsValid) return View(model);
+            
+                
             
 
+                 if (!ModelState.IsValid) return View(model);
+               
+                
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("LoggedIn");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -136,7 +142,11 @@ namespace DcssePortal.Web.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            IEnumerable<SelectListItem> items = ApplicationDbContext.Roles.Select(x => new SelectListItem { Text = x.Name, Value = x.Id });
+
+            ViewBag.UserRoles = items;//new SelectList(ApplicationDbContext.Roles.Where(u => !u.Name.Contains("Admin"))
+                                    //.ToList(), "Name", "Name");
+            return View(new RegisterViewModel());
         }
 
         //
@@ -148,10 +158,12 @@ namespace DcssePortal.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                //assign role to user
                 if (result.Succeeded)
                 {
+                    await UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -160,8 +172,12 @@ namespace DcssePortal.Web.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                   
+
+                    return RedirectToAction("Index", "Users");
                 }
+                ViewBag.Name = new SelectList(ApplicationDbContext.Roles.Where(u => !u.Name.Contains("Admin"))
+                                  .ToList(), "Name", "Name");
                 AddErrors(result);
             }
 
@@ -264,6 +280,12 @@ namespace DcssePortal.Web.Controllers
         // GET: /Account/ResetPasswordConfirmation
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
+        //Loggedin
+        public ActionResult LoggedIn()
         {
             return View();
         }

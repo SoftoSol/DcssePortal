@@ -42,4 +42,3 @@ C:\Users\captJack\Desktop\DcssePortal-master\DcssePortal\DcssePortal.Data\obj\De
 C:\Users\captJack\Desktop\DcssePortal-master\DcssePortal\DcssePortal.Data\obj\Debug\DcssePortal.Data.pdb
 C:\Users\captJack\Desktop\DcssePortal-master\DcssePortal\DcssePortal.Data\obj\Debug\DcssePortal.Data.Migrations.ModelClassesUpdated.resources
 C:\Users\captJack\Desktop\DcssePortal-master\DcssePortal\DcssePortal.Data\obj\Debug\DcssePortal.Data.csproj.GenerateResource.cache
-C:\Users\captJack\Desktop\DcssePortal-master\DcssePortal\DcssePortal.Data\obj\Debug\DcssePortal.Data.Migrations.ModelClassesUpdatedV2.resources

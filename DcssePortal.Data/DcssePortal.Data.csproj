@@ -58,13 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202010271959041_ModelClassesUpdated.cs" />
-    <Compile Include="Migrations\202010271959041_ModelClassesUpdated.designer.cs">
-      <DependentUpon>202010271959041_ModelClassesUpdated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010272024126_ModelClassesUpdatedV2.cs" />
-    <Compile Include="Migrations\202010272024126_ModelClassesUpdatedV2.designer.cs">
-      <DependentUpon>202010272024126_ModelClassesUpdatedV2.cs</DependentUpon>
+    <Compile Include="Migrations\202010280018145_ModelClassesUpdated.cs" />
+    <Compile Include="Migrations\202010280018145_ModelClassesUpdated.designer.cs">
+      <DependentUpon>202010280018145_ModelClassesUpdated.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,11 +76,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010271959041_ModelClassesUpdated.resx">
-      <DependentUpon>202010271959041_ModelClassesUpdated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010272024126_ModelClassesUpdatedV2.resx">
-      <DependentUpon>202010272024126_ModelClassesUpdatedV2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202010280018145_ModelClassesUpdated.resx">
+      <DependentUpon>202010280018145_ModelClassesUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

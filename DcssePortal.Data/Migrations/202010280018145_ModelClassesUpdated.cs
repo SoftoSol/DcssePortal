@@ -36,7 +36,7 @@
                     {
                         ID = c.Int(nullable: false, identity: true),
                         CourseCode = c.String(),
-                        CourseTitle = c.Int(nullable: false),
+                        CourseTitle = c.String(),
                         Faculty_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
