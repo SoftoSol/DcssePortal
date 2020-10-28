@@ -148,9 +148,8 @@ namespace DcssePortal.Web.Controllers
 
         //
         // GET: /Account/Register
-
-        //[Authorize(Roles = "Admin")]
-        [AllowAnonymous]
+       
+        [Authorize(Roles = "Admin")]
         public ActionResult Register()
         {
             IEnumerable<SelectListItem> items = ApplicationDbContext.Roles.Select(x => new SelectListItem { Text = x.Name, Value = x.Id });
@@ -163,8 +162,7 @@ namespace DcssePortal.Web.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        //[Authorize(Roles ="Admin")]
-        [AllowAnonymous]
+       [Authorize(Roles ="Admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -177,16 +175,18 @@ namespace DcssePortal.Web.Controllers
                 {
                     await UserManager.AddToRoleAsync(user.Id, model.UserRoles);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                   
 
-                    return RedirectToAction("Index", "Users");
+
+                    if (isAdminUser()) return RedirectToAction("LoggedIn");
+                    else if (isFacultyUser()) return RedirectToAction("LoggedIn");
+                    else return RedirectToAction("Index", "Students");
                 }
                 ViewBag.Name = new SelectList(ApplicationDbContext.Roles.Where(u => !u.Name.Contains("Admin"))
                                   .ToList(), "Name", "Name");

@@ -22,6 +22,8 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Feedbacks/Details/5
+
+        [Authorize(Roles = "Student")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Feedbacks/Create
+        [Authorize(Roles = "Faculty")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +50,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Faculty")]
         public ActionResult Create([Bind(Include = "ID,Title,FileURL")] Feedback feedback)
         {
             if (ModelState.IsValid)
@@ -60,6 +64,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Feedbacks/Edit/5
+        [Authorize(Roles = "Faculty")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +84,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Faculty")]
         public ActionResult Edit([Bind(Include = "ID,Title,FileURL")] Feedback feedback)
         {
             if (ModelState.IsValid)
@@ -91,6 +97,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Feedbacks/Delete/5
+        [Authorize(Roles = "Faculty")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,6 +115,7 @@ namespace DcssePortal.Web.Controllers
         // POST: Feedbacks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Faculty")]
         public ActionResult DeleteConfirmed(int id)
         {
             Feedback feedback = db.Feedbacks.Find(id);

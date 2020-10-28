@@ -51,7 +51,7 @@ namespace DcssePortal.Web.Models
     {
         [Required]
         [Display(Name = "UserName")]
-        [EmailAddress]
+    
         public string UserName { get; set; }
 
         [Required]

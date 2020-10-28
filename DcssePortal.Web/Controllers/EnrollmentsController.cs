@@ -22,6 +22,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Enrollments/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +38,8 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Enrollments/Create
+
+        [Authorize(Roles = "Student,Faculty")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +50,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Faculty")]
         public ActionResult Create([Bind(Include = "ID")] Enrollment enrollment)
         {
             if (ModelState.IsValid)
@@ -60,6 +64,8 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Enrollments/Edit/5
+
+        [Authorize(Roles = "Faculty")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +85,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Faculty")]
         public ActionResult Edit([Bind(Include = "ID")] Enrollment enrollment)
         {
             if (ModelState.IsValid)
@@ -91,6 +98,8 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Enrollments/Delete/5
+
+        [Authorize(Roles = "Faculty")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +116,8 @@ namespace DcssePortal.Web.Controllers
 
         // POST: Enrollments/Delete/5
         [HttpPost, ActionName("Delete")]
+
+        [Authorize(Roles = "Faculty")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

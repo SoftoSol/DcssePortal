@@ -37,6 +37,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: CoursesSchemes/Create
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +48,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin")]
         public ActionResult Create([Bind(Include = "ID,CourseCode,CourseName,credithour,SemesterOffer,Department")] CoursesScheme coursesScheme)
         {
             if (ModelState.IsValid)
@@ -60,6 +62,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: CoursesSchemes/Edit/5
+        [Authorize(Roles ="Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +82,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin")]
         public ActionResult Edit([Bind(Include = "ID,CourseCode,CourseName,credithour,SemesterOffer,Department")] CoursesScheme coursesScheme)
         {
             if (ModelState.IsValid)
@@ -91,6 +95,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: CoursesSchemes/Delete/5
+        [Authorize(Roles ="Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,6 +113,7 @@ namespace DcssePortal.Web.Controllers
         // POST: CoursesSchemes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             CoursesScheme coursesScheme = db.CoursesSchemes.Find(id);

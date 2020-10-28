@@ -16,12 +16,14 @@ namespace DcssePortal.Web.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Complaints
+        
         public ActionResult Index()
         {
             return View(db.Complaints.ToList());
         }
 
         // GET: Complaints/Details/5
+        [Authorize(Roles ="Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Complaints/Create
+        [Authorize(Roles ="Student")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace DcssePortal.Web.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles ="Student")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Title,Detail")] Complaints complaints)
         {
@@ -60,6 +64,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Complaints/Edit/5
+        [Authorize(Roles ="Student")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +84,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Student")]
         public ActionResult Edit([Bind(Include = "ID,Title,Detail")] Complaints complaints)
         {
             if (ModelState.IsValid)
@@ -91,6 +97,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Complaints/Delete/5
+        [Authorize(Roles ="Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

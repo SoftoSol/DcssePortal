@@ -21,11 +21,11 @@ namespace DcssePortal.Web.Controllers
 
             return View(db.DateSheets.ToList());
         }
-        public ActionResult Search()
-        {
+        //public ActionResult Search()
+        //{
 
-            return View();
-        }
+        //    return View();
+        //}
 
         // GET: DateSheets/Details/5
         public ActionResult Details(int? id)
@@ -43,6 +43,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: DateSheets/Create
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             return View();
@@ -53,6 +54,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles ="Admin")]
         public ActionResult Create([Bind(Include = "ID,Title,Content,Department")] DateSheet dateSheet)
         {
             if (ModelState.IsValid)
@@ -66,6 +68,8 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: DateSheets/Edit/5
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +89,8 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ID,Title,Content,Department")] DateSheet dateSheet)
         {
             if (ModelState.IsValid)
@@ -97,6 +103,8 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: DateSheets/Delete/5
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,6 +122,8 @@ namespace DcssePortal.Web.Controllers
         // POST: DateSheets/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             DateSheet dateSheet = db.DateSheets.Find(id);

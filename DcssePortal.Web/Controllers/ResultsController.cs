@@ -22,6 +22,8 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Results/Details/5
+
+        [Authorize(Roles = "Admin,Student")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,8 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Results/Create
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +51,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "ID,TotalMarks,ObtainedMarks")] Result result)
         {
             if (ModelState.IsValid)
@@ -60,6 +65,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Results/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +85,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ID,TotalMarks,ObtainedMarks")] Result result)
         {
             if (ModelState.IsValid)
@@ -91,6 +98,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Results/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,6 +116,7 @@ namespace DcssePortal.Web.Controllers
         // POST: Results/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Result result = db.Results.Find(id);
