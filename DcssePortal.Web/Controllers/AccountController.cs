@@ -10,6 +10,7 @@ using DcssePortal.Model;
 using System.Web.UI.WebControls;
 using DcssePortal.Data;
 using System.Collections.Generic;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DcssePortal.Web.Controllers
 {
@@ -82,7 +83,15 @@ namespace DcssePortal.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToAction("LoggedIn");
+                    {
+                        if (returnUrl != "")
+                        {
+                            return RedirectToAction(returnUrl);
+                        }
+                        if (isAdminUser()) return RedirectToAction("LoggedIn");
+                        else if (isFacultyUser()) return RedirectToAction("LoggedIn");
+                        else return RedirectToAction("Index","Students");
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -139,6 +148,8 @@ namespace DcssePortal.Web.Controllers
 
         //
         // GET: /Account/Register
+
+        //[Authorize(Roles = "Admin")]
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -152,6 +163,7 @@ namespace DcssePortal.Web.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
+        //[Authorize(Roles ="Admin")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
@@ -502,5 +514,65 @@ namespace DcssePortal.Web.Controllers
             }
         }
         #endregion
+        private bool isAdminUser()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = User.Identity;
+                ApplicationDbContext applicationDbContext = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(applicationDbContext));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s[0].ToString() == "Admin")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        [NonAction]
+        private bool isStudentUser()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = User.Identity;
+                ApplicationDbContext applicationDbContext = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(applicationDbContext));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s[0].ToString() == "Student")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        [NonAction]
+        private bool isFacultyUser()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = User.Identity;
+                ApplicationDbContext applicationDbContext = new ApplicationDbContext();
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(applicationDbContext));
+                var s = UserManager.GetRoles(user.GetUserId());
+                if (s[0].ToString() == "Faculty")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
     }
 }

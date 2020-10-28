@@ -17,10 +17,10 @@ namespace DcssePortal.Web.Controllers
             {
 
 
-                if (!isAdminUser())
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+                //if (!isAdminUser())
+                //{
+                //    return RedirectToAction("Index", "Home");
+                //}
             }
             else
             {
@@ -32,9 +32,5 @@ namespace DcssePortal.Web.Controllers
 
         }
 
-        private bool isAdminUser()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
