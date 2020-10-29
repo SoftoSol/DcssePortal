@@ -11,6 +11,7 @@ namespace DcssePortal.Web.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+
             return View();
         }
 
