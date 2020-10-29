@@ -84,13 +84,20 @@ namespace DcssePortal.Web.Controllers
             {
                 case SignInStatus.Success:
                     {
-                        if (returnUrl != "")
+
+                        if (returnUrl != null)
                         {
                             return RedirectToAction(returnUrl);
                         }
-                        if (isAdminUser()) return RedirectToAction("LoggedIn");
-                        else if (isFacultyUser()) return RedirectToAction("LoggedIn");
-                        else return RedirectToAction("Index","Students");
+                        if (isAdminUser()) {
+                            Helper.CurrentUserRole = eUserRoles.Admin;
+                            return RedirectToAction("LoggedIn"); }
+                        else if (isFacultyUser()){
+                            Helper.CurrentUserRole = eUserRoles.Faculty;
+                            return RedirectToAction("LoggedIn"); }
+                        else {
+                            Helper.CurrentUserRole = eUserRoles.Student;
+                            return RedirectToAction("Index", "Students"); }
                     }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
