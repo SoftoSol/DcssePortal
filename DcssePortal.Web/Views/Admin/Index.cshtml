@@ -1,7 +1,66 @@
-﻿
+﻿@model IEnumerable<DcssePortal.Model.CoursesScheme>
+
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<a href='@Url.Action("Create","DateSheets")'>create datesheet</a>
+<h2>Index</h2>
+
+<p>
+    @if (Helper.CurrentUserRole == eUserRoles.Admin)
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.credithour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SemesterOffer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.credithour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SemesterOffer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @if (Helper.CurrentUserRole == eUserRoles.Admin)
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                }
+
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+
+            </td>
+        </tr>
+    }
+
+</table>
