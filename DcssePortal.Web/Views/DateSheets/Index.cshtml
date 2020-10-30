@@ -11,7 +11,7 @@
     <h2 class="pt-3">
         <b>DateSheets</b>
     </h2>
-    <a href="@Url.Action("Create New", "Create")" class="btn btn-success float-right mb-2">
+    <a href="@Url.Action("Create")" class="btn btn-success float-right mb-2">
         <i class="fas fa-plus-circle"></i>
         <span>
             <strong>Add New DateSheet</strong>
@@ -19,107 +19,71 @@
     </a>
 
 
-    <table class="table table-bordered table-striped table-hover table-responsive-lg" id="myTable">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Department)
-            </th>
-            <th>
-                @Html.Label("Actions")
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <table class="table table-bordered table-striped table-hover table-responsive-lg" id="myTableName">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Department)
-                </td>
-                <td>
-                    <a href="@Url.Action("Create", "DateSheets",new { id=item.ID} )" class=" " style="font-size:20px; color:lightseagreen; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Edit">
-                        <i class="fas fa-pencil-alt"></i>
-                        @*<span>
-                                <strong>Edit</strong>
-                            </span>*@
-                    </a>
-                    <a href="@Url.Action("Delete", "DateSheets",new { id=item.ID} )" class=" " style="font-size:20px; color:red; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Delete">
-                        <i class="fas fa-trash-alt"></i>
-                        @*<span>
-                                <strong>Delete</strong>
-                            </span>*@
-                    </a>
-                    <a href="@Url.Action("Details", "DateSheets",new { id=item.ID} )" class=" " style="font-size:20px; color:orange; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Detail">
-                        <i class="fas fa-book"></i>
-                        @*<span>
-                                <strong>Detail</strong>
-                            </span>*@
-                    </a>
-                </td>
-                @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                    </td>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Department)
+                </th>
+                <th>
+                    @Html.Label("Actions")
+                </th>
             </tr>
-        }
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit",new { id=item.ID} )" class=" " style="font-size:20px; color:lightseagreen; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Edit">
+                            <i class="fas fa-pencil-alt"></i>
+                            @*<span>
+                            <strong>Edit</strong>
+                        </span>*@
+                        </a>
+                        <a href="@Url.Action("Delete",new { id=item.ID} )" class=" " style="font-size:20px; color:red; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Delete">
+                            <i class="fas fa-trash-alt"></i>
+                            @*<span>
+                            <strong>Delete</strong>
+                        </span>*@
+                        </a>
+                        <a href="@Url.Action("Details",new { id=item.ID} )" class=" " style="font-size:20px; color:orange; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Detail">
+                            <i class="fas fa-book"></i>
+                            @*<span>
+                            <strong>Detail</strong>
+                        </span>*@
+                        </a>
+                    </td>
+                    @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>*@
+                </tr>
+            }
+            </tbody>
 
     </table>
 </div>
 
-
-
-
-
-
-@*<h2>Index</h2>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table" id="myTable">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Department)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Content)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Department)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>
-            </tr>
-        }
-
-    </table>*@
+<script>
+    $(document).ready(function () {
+        $('#myTableName').DataTable();
+    });
+</script>

@@ -10,176 +10,103 @@
     <h2 class="pt-3">
         <b>Student</b> Management
     </h2>
-    <a href="@Url.Action("Create New", "Create")" class="btn btn-success float-right mb-2">
-        <i class="fas fa-plus-circle"></i>
+    <a href="@Url.Action("Create")" class="btn btn-success float-right mb-2">
+        <i class="fas fa-plus"></i>
         <span>
             <strong>Add New Student</strong>
         </span>
     </a>
 
 
-    <table class="table table-bordered table-striped table-hover table-responsive-lg">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Age)
-            </th>
-            <th>
-                @Html.Label("Profile")
-            </th>
-            <th>
-                @Html.Label("Actions")
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <table id="myTableName" class="table table-bordered table-striped table-hover table-responsive-lg">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Password)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Age)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Profiile)
-                </td>
-                <td>
-                    <a href="@Url.Action("Create", "Students",new { id=item.ID} )" class=" " style="font-size:20px; color:lightseagreen; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Edit">
-                        <i class="fas fa-pencil-alt"></i>
-                        @*<span>
-                                <strong>Edit</strong>
-                            </span>*@
-                    </a>
-                    <a href="@Url.Action("Delete", "Students",new { id=item.ID} )" class=" " style="font-size:20px; color:red; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Delete">
-                        <i class="fas fa-trash-alt"></i>
-                        @*<span>
-                                <strong>Delete</strong>
-                            </span>*@
-                    </a>
-                    <a href="@Url.Action("Details", "Students",new { id=item.ID} )" class=" " style="font-size:20px; color:orange; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Detail">
-                        <i class="fas fa-book"></i>
-                        @*<span>
-                                <strong>Detail</strong>
-                            </span>*@
-                    </a>
-                </td>
-                @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                    </td>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.Label("Profile")
+                </th>
+                <th>
+                    @Html.Label("Actions")
+                </th>
             </tr>
-        }
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Profiile)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit",new { id=item.ID} )" class=" " style="font-size:20px; color:lightseagreen; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Edit">
+                            <i class="fas fa-pencil-alt"></i>
+                            @*<span>
+                            <strong>Edit</strong>
+                        </span>*@
+                        </a>
+                        <a href="@Url.Action("Delete",new { id=item.ID} )" class=" " style="font-size:20px; color:red; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Delete">
+                            <i class="fas fa-trash-alt"></i>
+                            @*<span>
+                            <strong>Delete</strong>
+                        </span>*@
+                        </a>
+                        <a href="@Url.Action("Details",new { id=item.ID} )" class=" " style="font-size:20px; color:orange; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Detail">
+                            <i class="fas fa-book"></i>
+                            @*<span>
+                            <strong>Detail</strong>
+                        </span>*@
+                        </a>
+                    </td>
+                    @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>*@
+                </tr>
+            }
+            </tbody>
 
     </table>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Profiile)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Profiile)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
-
-</table>*@
+<script>
+    $(document).ready(function () {
+        $('#myTableName').DataTable();
+    });
+</script>
