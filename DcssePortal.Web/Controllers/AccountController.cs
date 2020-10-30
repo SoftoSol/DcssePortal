@@ -59,6 +59,24 @@ namespace DcssePortal.Web.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                if (isAdminUser())
+                {
+                    Helper.CurrentUserRole = eUserRoles.Admin;
+                    return RedirectToAction("LoggedIn");
+                }
+                else if (isFacultyUser())
+                {
+                    Helper.CurrentUserRole = eUserRoles.Faculty;
+                    return RedirectToAction("LoggedIn");
+                }
+                else
+                {
+                    Helper.CurrentUserRole = eUserRoles.Student;
+                    return RedirectToAction("Index", "Students");
+                }
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
