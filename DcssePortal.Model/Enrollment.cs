@@ -16,5 +16,6 @@ namespace DcssePortal.Model
         public virtual Course Course { get; set; }
         public virtual Student Student { get; set; }
         public virtual Result Result { get; set; }
-    }
+  public virtual Feedback  Feedback { get; set; }
+  }
 }

@@ -18,16 +18,8 @@ namespace DcssePortal.Model
         public short InternalMarks { get; set; }
         public string ExternalMarks { get; set; }
         public Char Grade { get; set; }
-        public virtual Student Student { get; set; }
-        public virtual Course Course { get; set; }
 
-
-        public Result()
-        {
-            Student = new Student();
-            Course = new Course();
-        }
-
+    public virtual Enrollment Enrollment { get; set; }
 
 
     }

@@ -21,6 +21,9 @@ namespace DcssePortal.Model
         public string Age { get; set; }
         public string Profile { get; set; }
 
+    public virtual ApplicationUser User { get; set; }
+ 
+  public virtual List<Course> Courses { get; set; }
+  }
 
-    }
 }

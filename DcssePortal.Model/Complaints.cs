@@ -15,6 +15,6 @@ namespace DcssePortal.Model
         public int ID { get; set; }
         public string Title { get; set; }
         public string Detail { get; set; }
-        
-    }
+    public virtual Student Student { get; set; }
+  }
 }

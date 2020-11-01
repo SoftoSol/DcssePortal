@@ -17,6 +17,6 @@ namespace DcssePortal.Model
         public int credithour { get; set; }
         public string SemesterOffer { get; set; }
         public string Department { get; set; }
-
+    public virtual Admin Admin { get; set; }
     }
 }

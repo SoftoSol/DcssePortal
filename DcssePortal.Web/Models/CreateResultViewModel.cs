@@ -15,8 +15,8 @@ namespace DcssePortal.Web.Models
         {
             get
             {
-                if (Result.Course == null) return Enrollments.Select(x => x.Student).ToList();
-                return Enrollments.Where(x => x.Course == Result.Course).Select(x => x.Student).ToList();
+                if (Result.Enrollment.Course == null) return Enrollments.Select(x => x.Student).ToList();
+                return Enrollments.Where(x => x.Course == Result.Enrollment.Course).Select(x => x.Student).ToList();
             }
         }
     }

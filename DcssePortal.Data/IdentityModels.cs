@@ -23,8 +23,16 @@ namespace DcssePortal.Data
             return new ApplicationDbContext();
         }
 
-
-        public System.Data.Entity.DbSet<DcssePortal.Model.Student> Students { get; set; }
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+      modelBuilder.Entity<Enrollment>().HasOptional(x => x.Feedback).WithRequired(x => x.Enrollment);
+      modelBuilder.Entity<Enrollment>().HasOptional(x => x.Result).WithRequired(x => x.Enrollment);
+      //modelBuilder.Entity<Feedback>().HasRequired(x => x.Enrollment);
+      //modelBuilder.Entity<Enrollment>().HasOptional(x => x.Feedback);
+      //modelBuilder.Entity<Feedback>().has
+      base.OnModelCreating(modelBuilder);
+    }
+    public System.Data.Entity.DbSet<DcssePortal.Model.Student> Students { get; set; }
 
         public System.Data.Entity.DbSet<DcssePortal.Model.Complaints> Complaints { get; set; }
 
@@ -45,5 +53,6 @@ namespace DcssePortal.Data
         public System.Data.Entity.DbSet<DcssePortal.Model.Feedback> Feedbacks { get; set; }
 
         public System.Data.Entity.DbSet<DcssePortal.Model.Result> Results { get; set; }
+        public System.Data.Entity.DbSet<DcssePortal.Model.Admin> Admins { get; set; }
     }
 }

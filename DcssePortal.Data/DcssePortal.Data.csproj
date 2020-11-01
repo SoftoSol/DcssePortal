@@ -78,6 +78,18 @@
     <Compile Include="Migrations\202010311934235_ModelClassesUpdatedAgain2.designer.cs">
       <DependentUpon>202010311934235_ModelClassesUpdatedAgain2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011012005368_adminAddedRelationAddedToUsers.cs" />
+    <Compile Include="Migrations\202011012005368_adminAddedRelationAddedToUsers.designer.cs">
+      <DependentUpon>202011012005368_adminAddedRelationAddedToUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011012008192_AdminAddedToContext.cs" />
+    <Compile Include="Migrations\202011012008192_AdminAddedToContext.designer.cs">
+      <DependentUpon>202011012008192_AdminAddedToContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011012037599_relationsBuilt.cs" />
+    <Compile Include="Migrations\202011012037599_relationsBuilt.designer.cs">
+      <DependentUpon>202011012037599_relationsBuilt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -106,6 +118,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010311934235_ModelClassesUpdatedAgain2.resx">
       <DependentUpon>202010311934235_ModelClassesUpdatedAgain2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011012005368_adminAddedRelationAddedToUsers.resx">
+      <DependentUpon>202011012005368_adminAddedRelationAddedToUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011012008192_AdminAddedToContext.resx">
+      <DependentUpon>202011012008192_AdminAddedToContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011012037599_relationsBuilt.resx">
+      <DependentUpon>202011012037599_relationsBuilt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -25,5 +25,11 @@ namespace DcssePortal.Model
         public DateTime DOB { get; set; }
         public string Age { get; set; }
         public string Profile { get; set; }
+
+    public virtual ApplicationUser User { get; set; }
+
+    public virtual List<Complaints> Complaints { get; set; }
+    public virtual List<Enrollment> Enrollments { get; set; }
+    public virtual List<Feedback> Feedbacks { get; set; }
     }
 }

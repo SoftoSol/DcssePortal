@@ -13,7 +13,7 @@ namespace DcssePortal.Model
         public string Title { get; set; }
         public string Content { get; set; }
         public string Department { get; set; }
-
+    public virtual Admin Admin { get; set; }
 
     }
 }
