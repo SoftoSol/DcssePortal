@@ -4,3 +4,10 @@
 *.pdb
 *.cache
 *.txt
+DcssePortal.Web/DcssePortal.Web.csproj
+.vs/DcssePortal/config/applicationhost.config
+.vs/DcssePortal/v16/.suo
+*.cache
+*.dll
+*.pdb
+*.config

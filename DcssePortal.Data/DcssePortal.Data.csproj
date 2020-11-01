@@ -62,6 +62,22 @@
     <Compile Include="Migrations\202010280018145_ModelClassesUpdated.designer.cs">
       <DependentUpon>202010280018145_ModelClassesUpdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010311520231_ModelClassesUpdated1.cs" />
+    <Compile Include="Migrations\202010311520231_ModelClassesUpdated1.designer.cs">
+      <DependentUpon>202010311520231_ModelClassesUpdated1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010311545555_ModelClassesUpdatedAgain.cs" />
+    <Compile Include="Migrations\202010311545555_ModelClassesUpdatedAgain.designer.cs">
+      <DependentUpon>202010311545555_ModelClassesUpdatedAgain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010311549189_ModelClassesUpdatedAgain1.cs" />
+    <Compile Include="Migrations\202010311549189_ModelClassesUpdatedAgain1.designer.cs">
+      <DependentUpon>202010311549189_ModelClassesUpdatedAgain1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010311934235_ModelClassesUpdatedAgain2.cs" />
+    <Compile Include="Migrations\202010311934235_ModelClassesUpdatedAgain2.designer.cs">
+      <DependentUpon>202010311934235_ModelClassesUpdatedAgain2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,6 +94,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202010280018145_ModelClassesUpdated.resx">
       <DependentUpon>202010280018145_ModelClassesUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010311520231_ModelClassesUpdated1.resx">
+      <DependentUpon>202010311520231_ModelClassesUpdated1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010311545555_ModelClassesUpdatedAgain.resx">
+      <DependentUpon>202010311545555_ModelClassesUpdatedAgain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010311549189_ModelClassesUpdatedAgain1.resx">
+      <DependentUpon>202010311549189_ModelClassesUpdatedAgain1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010311934235_ModelClassesUpdatedAgain2.resx">
+      <DependentUpon>202010311934235_ModelClassesUpdatedAgain2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,6 +13,7 @@ namespace DcssePortal.Model
         [Key]
         public int ID { get; set; }
         public string CourseCode { get; set; }
+        public short CreditHour { get; set; }
         public string CourseTitle { get; set; }
         public virtual Faculty Faculty { get; set; }
 

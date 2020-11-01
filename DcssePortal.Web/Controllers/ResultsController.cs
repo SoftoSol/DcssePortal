@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DcssePortal.Data;
 using DcssePortal.Model;
+using DcssePortal.Web.Models;
 
 namespace DcssePortal.Web.Controllers
 {
@@ -18,7 +19,10 @@ namespace DcssePortal.Web.Controllers
         // GET: Results
         public ActionResult Index()
         {
-            return View(db.Results.ToList());
+            var viewModel = new CreateResultViewModel();
+            viewModel.Enrollments = db.Enrollments.ToList();
+            viewModel.Result = new Result();
+            return View(viewModel);
         }
 
         // GET: Results/Details/5

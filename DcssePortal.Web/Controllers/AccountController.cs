@@ -68,12 +68,12 @@ namespace DcssePortal.Web.Controllers
                 }
                 else if (isFacultyUser())
                 {
-                    Helper.CurrentUserRole = eUserRoles.Faculty;
+                    //Helper.CurrentUserRole = eUserRoles.Faculty;
                     return RedirectToAction("LoggedIn");
                 }
                 else
                 {
-                    Helper.CurrentUserRole = eUserRoles.Student;
+                    //Helper.CurrentUserRole = eUserRoles.Student;
                     return RedirectToAction("Index", "Students");
                 }
             }
@@ -108,13 +108,13 @@ namespace DcssePortal.Web.Controllers
                             return RedirectToAction(returnUrl);
                         }
                         if (isAdminUser()) {
-                            Helper.CurrentUserRole = eUserRoles.Admin;
+                           // Helper.CurrentUserRole = eUserRoles.Admin;
                             return RedirectToAction("LoggedIn"); }
                         else if (isFacultyUser()){
-                            Helper.CurrentUserRole = eUserRoles.Faculty;
+                            //Helper.CurrentUserRole = eUserRoles.Faculty;
                             return RedirectToAction("LoggedIn"); }
                         else {
-                            Helper.CurrentUserRole = eUserRoles.Student;
+                            //Helper.CurrentUserRole = eUserRoles.Student;
                             return RedirectToAction("Index", "Students"); }
                     }
                 case SignInStatus.LockedOut:
@@ -445,12 +445,12 @@ namespace DcssePortal.Web.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
 
         //
