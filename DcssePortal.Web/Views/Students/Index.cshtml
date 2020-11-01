@@ -10,12 +10,14 @@
     <h2 class="pt-3">
         <b>Student</b> Management
     </h2>
+    @if (Helper.CurrentUserRole == eUserRoles.Admin)
+    {
     <a href="@Url.Action("Create")" class="btn btn-success float-right mb-2">
         <i class="fas fa-plus"></i>
         <span>
             <strong>Add New Student</strong>
         </span>
-    </a>
+    </a>}
 
 
     <table id="myTableName" class="table table-bordered table-striped table-hover table-responsive-lg">

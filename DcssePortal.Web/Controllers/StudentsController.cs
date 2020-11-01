@@ -6,11 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using DcssePortal.Data;
 using DcssePortal.Model;
 
 namespace DcssePortal.Web.Controllers
 {
+  [Authorize(Roles="Admin")]
     public class StudentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -21,8 +23,9 @@ namespace DcssePortal.Web.Controllers
             return View(db.Students.ToList());
         }
 
-        // GET: Students/Details/5
-        public ActionResult Details(int? id)
+    // GET: Students/Details/5
+    [Authorize(Roles = "Admin,Student")]
+    public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -39,6 +42,7 @@ namespace DcssePortal.Web.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
+      return RedirectToAction("register", "account");
             return View();
         }
 
@@ -52,6 +56,8 @@ namespace DcssePortal.Web.Controllers
             if (ModelState.IsValid)
             {
                 db.Students.Add(student);
+        //AccountController controller = new AccountController();
+        
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -114,6 +120,7 @@ namespace DcssePortal.Web.Controllers
         {
             Student student = db.Students.Find(id);
             db.Students.Remove(student);
+            db.Users.Remove(db.Users.FirstOrDefault(x => x.Email == student.Email));
             db.SaveChanges();
             return RedirectToAction("Index");
         }

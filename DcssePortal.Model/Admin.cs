@@ -10,6 +10,7 @@ namespace DcssePortal.Model
   {
     public int Id { get; set; }
     public string Name { get; set; }
+    public string Email { get; set; }
     public virtual ApplicationUser User { get; set; }
     public virtual List<Noticeboard> Noticeboards { get; set; }
     public virtual  List<DateSheet> DateSheets { get; set; }

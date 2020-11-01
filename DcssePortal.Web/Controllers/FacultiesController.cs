@@ -36,7 +36,8 @@ namespace DcssePortal.Web.Controllers
         // GET: Faculties/Create
         public ActionResult Create()
         {
-            return View();
+      return RedirectToAction("register", "account");
+      return View();
         }
 
         // POST: Faculties/Create
@@ -109,7 +110,8 @@ namespace DcssePortal.Web.Controllers
         {
             Faculty faculty = db.Faculties.Find(id);
             db.Faculties.Remove(faculty);
-            db.SaveChanges();
+      db.Users.Remove(db.Users.FirstOrDefault(x => x.Email == faculty.Email));
+      db.SaveChanges();
             return RedirectToAction("Index");
         }
 

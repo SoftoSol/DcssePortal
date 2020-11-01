@@ -27,6 +27,7 @@ namespace DcssePortal.Data
     {
       modelBuilder.Entity<Enrollment>().HasOptional(x => x.Feedback).WithRequired(x => x.Enrollment);
       modelBuilder.Entity<Enrollment>().HasOptional(x => x.Result).WithRequired(x => x.Enrollment);
+      modelBuilder.Entity<Student>().Property(x => x.DOB).HasColumnType("datetime2");
       //modelBuilder.Entity<Feedback>().HasRequired(x => x.Enrollment);
       //modelBuilder.Entity<Enrollment>().HasOptional(x => x.Feedback);
       //modelBuilder.Entity<Feedback>().has
