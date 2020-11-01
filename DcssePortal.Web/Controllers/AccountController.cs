@@ -576,8 +576,8 @@ namespace DcssePortal.Web.Controllers
         var user = User.Identity;
         ApplicationDbContext applicationDbContext = new ApplicationDbContext();
         var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(applicationDbContext));
-        var s = UserManager.GetRoles(applicationDbContext.Users.FirstOrDefault(x => x.UserName == user.Name).Id);
-        if (s[0].ToString() == "Admin")
+        var roles = applicationDbContext.Users.FirstOrDefault(x => x.UserName == user.Name).Roles.ElementAt(0);
+        if (applicationDbContext.Roles.FirstOrDefault(x=>x.Id==roles.RoleId).Name=="Admin")
         {
           return true;
         }
@@ -596,8 +596,8 @@ namespace DcssePortal.Web.Controllers
         var user = User.Identity;
         ApplicationDbContext applicationDbContext = new ApplicationDbContext();
         var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(applicationDbContext));
-        var s = UserManager.GetRoles(applicationDbContext.Users.FirstOrDefault(x => x.UserName == user.Name).Id);
-        if (s[0].ToString() == "Student")
+        var roles = applicationDbContext.Users.FirstOrDefault(x => x.UserName == user.Name).Roles.ElementAt(0);
+        if (applicationDbContext.Roles.FirstOrDefault(x => x.Id == roles.RoleId).Name == "Student")
         {
           return true;
         }
@@ -616,8 +616,8 @@ namespace DcssePortal.Web.Controllers
         var user = User.Identity;
         ApplicationDbContext applicationDbContext = new ApplicationDbContext();
         var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(applicationDbContext));
-        var s = UserManager.GetRoles(applicationDbContext.Users.FirstOrDefault(x=>x.UserName==user.Name).Id);
-        if (s[0].ToString() == "Faculty")
+        var roles = applicationDbContext.Users.FirstOrDefault(x => x.UserName == user.Name).Roles.ElementAt(0);
+        if (applicationDbContext.Roles.FirstOrDefault(x => x.Id == roles.RoleId).Name == "Faculty")
         {
           return true;
         }

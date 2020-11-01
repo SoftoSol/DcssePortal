@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DcssePortal.Model.Result>
+﻿@model IEnumerable<DcssePortal.Web.Models.CreateResultViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -18,30 +18,31 @@
         </span>
     </a>
 
-
+    @if (Model.Count() > 0)
+    {
     <table id="myTableName" class="table table-bordered table-striped table-hover table-responsive-lg">
         <thead>
             <tr>
 
                 <th>
-                    @Html.DisplayNameFor(model => model.Student.RegNo)
+            @Html.DisplayNameFor(model => model.Student.RegNo)
+        </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Enrollment.Student.FirstName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Student.FirstName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Student.LastName)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Student.FatherName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Student.DOB)
+                    @Html.DisplayNameFor(model => model.Enrollment.Student.LastName)
                 </th>
 
                 <th>
-                    @Html.DisplayNameFor(model => model.Student.Batch)
+                    @Html.DisplayNameFor(model => model.Enrollment.Student.FatherName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Enrollment.Student.DOB)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Enrollment.Student.Batch)
                 </th>
 
                 <th>
@@ -71,22 +72,22 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayNameFor(model => model.Student.RegNo)
+                        @Html.DisplayNameFor(model => model.Enrollment.Student.RegNo)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.Student.FirstName)
+                        @Html.DisplayNameFor(model => model.Enrollment.Student.FirstName)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.Student.LastName)
+                        @Html.DisplayNameFor(model => model.Enrollment.Student.LastName)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.Student.FatherName)
+                        @Html.DisplayNameFor(model => model.Enrollment.Student.FatherName)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.Student.DOB)
+                        @Html.DisplayNameFor(model => model.Enrollment.Student.DOB)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Student.Batch)
+                        @Html.DisplayFor(modelItem => item.Enrollment.Student.Batch)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.InternalMarks)
@@ -104,19 +105,19 @@
                         @Html.DisplayNameFor(model => model.Grade)
                     </td>
                     <td>
-                        <a href="@Url.Action("Edit",new { id=item.ID} )" class=" " style="font-size:20px; color:lightseagreen; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Edit">
+                        <a href="@Url.Action("Edit", new { id = item.ID })" class=" " style="font-size:20px; color:lightseagreen; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Edit">
                             <i class="fas fa-pencil-alt"></i>
                             @*<span>
                                     <strong>Edit</strong>
                                 </span>*@
                         </a>
-                        <a href="@Url.Action("Delete",new { id=item.ID} )" class=" " style="font-size:20px; color:red; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Delete">
+                        <a href="@Url.Action("Delete", new { id = item.ID })" class=" " style="font-size:20px; color:red; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Delete">
                             <i class="fas fa-trash-alt"></i>
                             @*<span>
                                     <strong>Delete</strong>
                                 </span>*@
                         </a>
-                        <a href="@Url.Action("Details",new { id=item.ID} )" class=" " style="font-size:20px; color:orange; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Detail">
+                        <a href="@Url.Action("Details", new { id = item.ID })" class=" " style="font-size:20px; color:orange; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Detail">
                             <i class="fas fa-book"></i>
                             @*<span>
                                     <strong>Detail</strong>
@@ -128,7 +129,7 @@
         </tbody>
 
     </table>
-</div>
+    }</div>
 
 <script>
     $(document).ready(function () {

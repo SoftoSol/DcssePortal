@@ -90,6 +90,14 @@
     <Compile Include="Migrations\202011012037599_relationsBuilt.designer.cs">
       <DependentUpon>202011012037599_relationsBuilt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011012133246_datatypeUpdatedForDobStudent.cs" />
+    <Compile Include="Migrations\202011012133246_datatypeUpdatedForDobStudent.designer.cs">
+      <DependentUpon>202011012133246_datatypeUpdatedForDobStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011012209360_emailAddedToAdmin.cs" />
+    <Compile Include="Migrations\202011012209360_emailAddedToAdmin.designer.cs">
+      <DependentUpon>202011012209360_emailAddedToAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -127,6 +135,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011012037599_relationsBuilt.resx">
       <DependentUpon>202011012037599_relationsBuilt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011012133246_datatypeUpdatedForDobStudent.resx">
+      <DependentUpon>202011012133246_datatypeUpdatedForDobStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011012209360_emailAddedToAdmin.resx">
+      <DependentUpon>202011012209360_emailAddedToAdmin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
