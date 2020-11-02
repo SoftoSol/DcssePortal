@@ -85,7 +85,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,Email,Password,Phone,Age,Profiile")] Student student)
+        public ActionResult Edit(Student student)
         {
             if (ModelState.IsValid)
             {

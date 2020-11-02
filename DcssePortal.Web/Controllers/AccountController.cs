@@ -633,7 +633,6 @@ namespace DcssePortal.Web.Controllers
     {
       try
       {
-
         var user = new ApplicationUser { UserName = username, Email = email };
         var result = await UserManager.CreateAsync(user, password);
         if (result.Succeeded)

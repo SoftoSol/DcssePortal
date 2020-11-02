@@ -17,8 +17,10 @@ namespace DcssePortal.Model
         public short ObtainedMarks { get; set; }
         public short InternalMarks { get; set; }
         public string ExternalMarks { get; set; }
-        public Char Grade { get; set; }
+        public string Grade { get; set; }
 
+    [ForeignKey("Enrollment")]
+    public int EnrollmentId { get; set; }
     public virtual Enrollment Enrollment { get; set; }
 
 

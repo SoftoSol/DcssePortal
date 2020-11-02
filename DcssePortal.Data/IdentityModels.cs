@@ -2,7 +2,9 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 
@@ -26,7 +28,7 @@ namespace DcssePortal.Data
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
       modelBuilder.Entity<Enrollment>().HasOptional(x => x.Feedback).WithRequired(x => x.Enrollment);
-      modelBuilder.Entity<Enrollment>().HasOptional(x => x.Result).WithRequired(x => x.Enrollment);
+      //modelBuilder.Entity<Enrollment>().HasOptional(x => x.Result).WithRequired(x => x.Enrollment);
       modelBuilder.Entity<Student>().Property(x => x.DOB).HasColumnType("datetime2");
       //modelBuilder.Entity<Feedback>().HasRequired(x => x.Enrollment);
       //modelBuilder.Entity<Enrollment>().HasOptional(x => x.Feedback);

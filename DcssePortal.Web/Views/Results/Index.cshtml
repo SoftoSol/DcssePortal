@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DcssePortal.Web.Models.CreateResultViewModel>
+﻿@model IEnumerable<DcssePortal.Model.Result>
 
 @{
     ViewBag.Title = "Index";
@@ -25,7 +25,7 @@
             <tr>
 
                 <th>
-            @Html.DisplayNameFor(model => model.Student.RegNo)
+            @Html.DisplayNameFor(model => model.Enrollment.Student.RegNo)
         </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Enrollment.Student.FirstName)
@@ -35,10 +35,10 @@
                 </th>
 
                 <th>
-                    @Html.DisplayNameFor(model => model.Enrollment.Student.FatherName)
+                    @Html.DisplayNameFor(model => model.Enrollment.Course.CourseCode)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Enrollment.Student.DOB)
+                    @Html.DisplayNameFor(model => model.Enrollment.Course.CourseTitle)
                 </th>
 
                 <th>
@@ -72,37 +72,37 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayNameFor(model => model.Enrollment.Student.RegNo)
+                        @Html.DisplayFor(model => item.Enrollment.Student.RegNo)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.Enrollment.Student.FirstName)
+                        @Html.DisplayFor(model => item.Enrollment.Student.FirstName)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.Enrollment.Student.LastName)
+                        @Html.DisplayFor(model => item.Enrollment.Student.LastName)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.Enrollment.Student.FatherName)
+                        @Html.DisplayFor(model => item.Enrollment.Course.CourseCode)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.Enrollment.Student.DOB)
+                        @Html.DisplayFor(model => item.Enrollment.Course.CourseTitle)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Enrollment.Student.Batch)
+                        @Html.DisplayFor(model => item.Enrollment.Student.Batch)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.InternalMarks)
+                        @Html.DisplayFor(model=> item.InternalMarks)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ExternalMarks)
+                        @Html.DisplayFor(model=> item.ExternalMarks)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ObtainedMarks)
+                        @Html.DisplayFor(model=> item.ObtainedMarks)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TotalMarks)
+                        @Html.DisplayFor(model => item.TotalMarks)
                     </td>
                     <td>
-                        @Html.DisplayNameFor(model => model.Grade)
+                        @Html.DisplayFor(model => item.Grade)
                     </td>
                     <td>
                         <a href="@Url.Action("Edit", new { id = item.ID })" class=" " style="font-size:20px; color:lightseagreen; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Edit">

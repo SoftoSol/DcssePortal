@@ -98,6 +98,22 @@
     <Compile Include="Migrations\202011012209360_emailAddedToAdmin.designer.cs">
       <DependentUpon>202011012209360_emailAddedToAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011022008095_enrollmentUniqueSet.cs" />
+    <Compile Include="Migrations\202011022008095_enrollmentUniqueSet.designer.cs">
+      <DependentUpon>202011022008095_enrollmentUniqueSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011022044467_keyAddedToResult.cs" />
+    <Compile Include="Migrations\202011022044467_keyAddedToResult.designer.cs">
+      <DependentUpon>202011022044467_keyAddedToResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011022143107_enrollmentLinkedWithResult.cs" />
+    <Compile Include="Migrations\202011022143107_enrollmentLinkedWithResult.designer.cs">
+      <DependentUpon>202011022143107_enrollmentLinkedWithResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011022150181_enrollmentLinkedWithResultSetup.cs" />
+    <Compile Include="Migrations\202011022150181_enrollmentLinkedWithResultSetup.designer.cs">
+      <DependentUpon>202011022150181_enrollmentLinkedWithResultSetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -141,6 +157,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011012209360_emailAddedToAdmin.resx">
       <DependentUpon>202011012209360_emailAddedToAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011022008095_enrollmentUniqueSet.resx">
+      <DependentUpon>202011022008095_enrollmentUniqueSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011022044467_keyAddedToResult.resx">
+      <DependentUpon>202011022044467_keyAddedToResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011022143107_enrollmentLinkedWithResult.resx">
+      <DependentUpon>202011022143107_enrollmentLinkedWithResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011022150181_enrollmentLinkedWithResultSetup.resx">
+      <DependentUpon>202011022150181_enrollmentLinkedWithResultSetup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
