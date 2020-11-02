@@ -20,6 +20,6 @@ namespace DcssePortal.Model
     [Required]
     [Index("IX_Course_And_Student", 2, IsUnique = true)]
     public virtual Student Student { get; set; }
-    public virtual Feedback Feedback { get; set; }
+    //public virtual Feedback Feedback { get; set; }
   }
 }

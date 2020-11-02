@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DcssePortal.Data;
 using DcssePortal.Model;
+using Microsoft.AspNet.Identity;
 
 namespace DcssePortal.Web.Controllers
 {
@@ -23,7 +24,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Complaints/Details/5
-        [Authorize(Roles ="Admin")]
+        //[Authorize(Roles ="Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,22 +40,23 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Complaints/Create
-        [Authorize(Roles ="Student")]
+        //[Authorize(Roles ="Student")]
         public ActionResult Create()
         {
-            return View();
+      return View();
         }
 
         // POST: Complaints/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles ="Student")]
+        //[Authorize(Roles ="Student")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Title,Detail")] Complaints complaints)
         {
             if (ModelState.IsValid)
             {
+        complaints.Student = db.Students.FirstOrDefault(x => x.User == db.Users.FirstOrDefault(y => HttpContext.User.Identity.GetUserId() == y.Id));
                 db.Complaints.Add(complaints);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -64,7 +66,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Complaints/Edit/5
-        [Authorize(Roles ="Student")]
+        //[Authorize(Roles ="Student")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,7 +86,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles ="Student")]
+        //[Authorize(Roles ="Student")]
         public ActionResult Edit([Bind(Include = "ID,Title,Detail")] Complaints complaints)
         {
             if (ModelState.IsValid)
@@ -97,7 +99,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Complaints/Delete/5
-        [Authorize(Roles ="Admin")]
+        //[Authorize(Roles ="Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

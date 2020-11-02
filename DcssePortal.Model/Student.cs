@@ -30,6 +30,6 @@ namespace DcssePortal.Model
 
     public virtual List<Complaints> Complaints { get; set; }
     public virtual List<Enrollment> Enrollments { get; set; }
-    public virtual List<Feedback> Feedbacks { get; set; }
+    //public virtual List<Feedback> Feedbacks { get; set; }
     }
 }

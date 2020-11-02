@@ -17,7 +17,7 @@ namespace DcssePortal.Model
         public string CourseTitle { get; set; }
         public virtual Faculty Faculty { get; set; }
 
-    public virtual List<Feedback> Feedbacks { get; set; }
+    //public virtual List<Feedback> Feedbacks { get; set; }
     public virtual List<Enrollment> Enrollments { get; set; }
     public virtual List<Content> Contents{ get; set; }
   }

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 using DcssePortal.Data;
@@ -23,7 +24,7 @@ namespace DcssePortal.Web.Controllers
 
         // GET: Feedbacks/Details/5
 
-        [Authorize(Roles = "Student")]
+        //[Authorize(Roles = "Student")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,9 +40,11 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Feedbacks/Create
-        [Authorize(Roles = "Faculty")]
+        //[Authorize(Roles = "Faculty")]
         public ActionResult Create()
         {
+      ViewBag.Courses = db.Courses.ToList();
+      ViewBag.Students = db.Students.ToList();
             return View();
         }
 
@@ -50,21 +53,31 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Faculty")]
-        public ActionResult Create([Bind(Include = "ID,Title,FileURL")] Feedback feedback)
+        //[Authorize(Roles = "Faculty")]
+        public ActionResult Create(Feedback feedback)
         {
-            if (ModelState.IsValid)
-            {
-                db.Feedbacks.Add(feedback);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+      if (ModelState.IsValid)
+      {
+        var studentId = Convert.ToInt32(Request.Form["Student"]);
+        var courseId = Convert.ToInt32(Request.Form["Course"]);
+        if (!db.Enrollments.Any(x => x.Course.ID == courseId && x.Student.ID == studentId))
+          ModelState.AddModelError("Invalid Enrollment", new Exception("Invalid Enrollment"));
+        else
+        {
+          feedback.Enrollment = db.Enrollments.FirstOrDefault(x => x.Course.ID == courseId && x.Student.ID == studentId);
+          db.Feedbacks.Add(feedback);
+          db.SaveChanges();
+          return RedirectToAction("Index");
+        }
+      }
 
-            return View(feedback);
+      ViewBag.Courses = db.Courses.ToList();
+      ViewBag.Students = db.Students.ToList();
+      return View(feedback);
         }
 
         // GET: Feedbacks/Edit/5
-        [Authorize(Roles = "Faculty")]
+        //[Authorize(Roles = "Faculty")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,7 +89,10 @@ namespace DcssePortal.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(feedback);
+
+      ViewBag.Courses = db.Courses.ToList();
+      ViewBag.Students = db.Students.ToList();
+      return View(feedback);
         }
 
         // POST: Feedbacks/Edit/5
@@ -84,20 +100,32 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Faculty")]
-        public ActionResult Edit([Bind(Include = "ID,Title,FileURL")] Feedback feedback)
+        //[Authorize(Roles = "Faculty")]
+        public ActionResult Edit(Feedback feedback)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(feedback).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(feedback);
+      if (ModelState.IsValid)
+      {
+
+        var studentId = Convert.ToInt32(Request.Form["Student"]);
+        var courseId = Convert.ToInt32(Request.Form["Course"]);
+        if (!db.Enrollments.Any(x => x.Course.ID == courseId && x.Student.ID == studentId))
+          ModelState.AddModelError("Invalid Enrollment", new Exception("Invalid Enrollment"));
+        else
+        {
+          feedback.Enrollment = db.Enrollments.FirstOrDefault(x => x.Course.ID == courseId && x.Student.ID == studentId);
+          db.Entry(feedback).State = EntityState.Modified;
+          db.SaveChanges();
+          return RedirectToAction("Index");
+        }
+      }
+
+      ViewBag.Courses = db.Courses.ToList();
+      ViewBag.Students = db.Students.ToList();
+      return View(feedback);
         }
 
         // GET: Feedbacks/Delete/5
-        [Authorize(Roles = "Faculty")]
+        //[Authorize(Roles = "Faculty")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -115,7 +143,7 @@ namespace DcssePortal.Web.Controllers
         // POST: Feedbacks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Faculty")]
+        //[Authorize(Roles = "Faculty")]
         public ActionResult DeleteConfirmed(int id)
         {
             Feedback feedback = db.Feedbacks.Find(id);
