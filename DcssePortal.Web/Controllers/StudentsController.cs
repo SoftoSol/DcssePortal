@@ -12,7 +12,7 @@ using DcssePortal.Model;
 
 namespace DcssePortal.Web.Controllers
 {
-  [Authorize(Roles="Admin")]
+  //[Authorize(Roles="Admin")]
     public class StudentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -24,7 +24,7 @@ namespace DcssePortal.Web.Controllers
         }
 
     // GET: Students/Details/5
-    [Authorize(Roles = "Admin,Student")]
+    //[Authorize(Roles = "Admin,Student")]
     public ActionResult Details(int? id)
         {
             if (id == null)

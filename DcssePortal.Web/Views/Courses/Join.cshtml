@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Join";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<h2>Join</h2>
+
+@using (Html.BeginForm("Join", "Courses"))
+{
+    <input placeholder="InstructureId" name="InstructureId" />
+    <input placeholder="courseCode" name="courseCode" />
+    <input placeholder="secretCode" name="secretCode" />
+    <input type="submit" class="btn btn-success" value="Join" />
+
+}
+

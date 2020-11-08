@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 using DcssePortal.Data;
@@ -50,11 +53,20 @@ namespace DcssePortal.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles ="Faculty")]
-        public ActionResult Create([Bind(Include = "ID,CourseCode,CourseTitle")] Course course)
+        public ActionResult Create(Course course)
         {
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
+        var faculties = from faculty in db.Faculties
+                              join user in db.Users on faculty.Email equals user.Email
+                              select faculty;
+        if (faculties.Count() ==0)
+        {
+          throw new ObjectNotFoundException("faculty not found");
+        }
+        course.Faculty = faculties.First();
+        db.Courses.Add(course);
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -84,7 +96,7 @@ namespace DcssePortal.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles ="Faculty")]
-        public ActionResult Edit([Bind(Include = "ID,CourseCode,CourseTitle")] Course course)
+        public ActionResult Edit(Course course)
         {
             if (ModelState.IsValid)
             {
@@ -123,7 +135,51 @@ namespace DcssePortal.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+    [HttpGet]
+    [Authorize(Roles = "Student")]
+    public ActionResult Join()
+    {
+      return View();
+    }
+
+
+    [HttpPost]
+    [Authorize(Roles ="Student")]
+    public ActionResult Join(FormCollection forms)
+    {
+      if (ModelState.IsValid)
+      {
+        var instructureId = Convert.ToInt32(forms["InstructureId"]);
+        var courseCode = forms["courseCode"];
+        var secretCode = forms["secretCode"].Trim();
+        var course = db.Courses.FirstOrDefault(x => x.CourseCode == courseCode && x.Faculty.ID == instructureId);
+        var currentStudents = from std in db.Students
+                             join user in db.Users on std.Email equals user.Email
+                             select std;
+        if (currentStudents.Count()==0)
+        {
+          throw new ObjectNotFoundException("could not find student");
+          ModelState.AddModelError("identificationProblem", "Cannot identify student");
+          return View();
+        }
+        var currentStudent = currentStudents.FirstOrDefault();
+        if (course == null)
+        {
+          throw new ObjectNotFoundException("could not find course");
+        }
+        if (course.SecretCode == secretCode)
+        {
+          course.Enrollments.Add(new Enrollment { Course = course, Student = currentStudent });
+          db.SaveChanges();
+        }
+        else
+        {
+          ModelState.AddModelError("invalid key", "invalid secret key");
+        }
+      }
+      return View();
+    }
+    protected override void Dispose(bool disposing)
         {
             if (disposing)
             {

@@ -118,6 +118,10 @@
     <Compile Include="Migrations\202011022225506_feedbackMigrationFixed.designer.cs">
       <DependentUpon>202011022225506_feedbackMigrationFixed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011081624549_courseSecretCodeAdded.cs" />
+    <Compile Include="Migrations\202011081624549_courseSecretCodeAdded.designer.cs">
+      <DependentUpon>202011081624549_courseSecretCodeAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -176,6 +180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011022225506_feedbackMigrationFixed.resx">
       <DependentUpon>202011022225506_feedbackMigrationFixed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011081624549_courseSecretCodeAdded.resx">
+      <DependentUpon>202011081624549_courseSecretCodeAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
