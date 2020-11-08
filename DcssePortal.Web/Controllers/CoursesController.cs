@@ -25,7 +25,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Courses/Details/5
-        [Authorize(Roles ="Student, Faculty")]
+        //[Authorize(Roles ="Student, Faculty")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -41,7 +41,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Courses/Create
-        [Authorize(Roles ="Faculty")]
+        //[Authorize(Roles ="Faculty")]
         public ActionResult Create()
         {
             return View();
@@ -52,7 +52,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles ="Faculty")]
+        //[Authorize(Roles ="Faculty")]
         public ActionResult Create(Course course)
         {
             if (ModelState.IsValid)
@@ -75,7 +75,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Courses/Edit/5
-        [Authorize(Roles ="Faculty")]
+        //[Authorize(Roles ="Faculty")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,7 +95,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles ="Faculty")]
+        //[Authorize(Roles ="Faculty")]
         public ActionResult Edit(Course course)
         {
             if (ModelState.IsValid)
@@ -108,7 +108,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Courses/Delete/5
-        [Authorize(Roles ="Faculty")]
+        //[Authorize(Roles ="Faculty")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

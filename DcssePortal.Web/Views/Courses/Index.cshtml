@@ -17,6 +17,12 @@
         <th>
             @Html.DisplayNameFor(model => model.CourseTitle)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreditHour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecretCode)
+        </th>
         <th></th>
     </tr>
 
@@ -27,6 +33,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CourseTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditHour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecretCode)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
