@@ -95,7 +95,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Noticeboards/Delete/5
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

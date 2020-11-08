@@ -97,7 +97,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: CoursesSchemes/Delete/5
-        [Authorize(Roles ="Admin")]
+        //[Authorize(Roles ="Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

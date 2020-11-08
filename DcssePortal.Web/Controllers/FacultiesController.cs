@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace DcssePortal.Web.Controllers
 {
-    [Authorize(Roles ="Student, Admin")]
+    //[Authorize(Roles ="Student, Admin")]
     public class FacultiesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
