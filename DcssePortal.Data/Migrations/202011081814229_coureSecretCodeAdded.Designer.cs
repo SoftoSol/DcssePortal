@@ -7,13 +7,13 @@ namespace DcssePortal.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class courseSecretCodeAdded : IMigrationMetadata
+    public sealed partial class coureSecretCodeAdded : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(courseSecretCodeAdded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(coureSecretCodeAdded));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011081624549_courseSecretCodeAdded"; }
+            get { return "202011081814229_coureSecretCodeAdded"; }
         }
         
         string IMigrationMetadata.Source

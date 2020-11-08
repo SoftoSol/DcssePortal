@@ -3,16 +3,16 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class courseSecretCodeAdded : DbMigration
+    public partial class coureSecretCodeAdded : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.tCourseContent", "SecretCode", c => c.String());
+            AddColumn("dbo.tCourse", "SecretCode", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.tCourseContent", "SecretCode");
+            DropColumn("dbo.tCourse", "SecretCode");
         }
     }
 }
