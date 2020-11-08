@@ -23,16 +23,13 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.NewsTitle)
+                    @Html.DisplayNameFor(model => model.Title)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.NewsContent)
+                    @Html.DisplayNameFor(model => model.Body)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.StartDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EndDate)
+                    @Html.DisplayNameFor(model => model.Date)
                 </th>
                 <th>
                     @Html.Label("Actions")
@@ -44,16 +41,13 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NewsTitle)
+                        @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NewsContent)
+                        @Html.DisplayFor(modelItem => item.Body)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.StartDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EndDate)
+                        @Html.DisplayFor(modelItem => item.Date)
                     </td>
                     <td>
                         <a href="@Url.Action("Edit",new { id=item.ID} )" class=" " style="font-size:20px; color:lightseagreen; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Edit">

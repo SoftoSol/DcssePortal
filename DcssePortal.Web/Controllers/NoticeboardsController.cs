@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using DcssePortal.Data;
+using DcssePortal.Model;
+
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using DcssePortal.Data;
-using DcssePortal.Model;
 
 namespace DcssePortal.Web.Controllers
 {
-    public class NoticeboardsController : Controller
+  public class NoticeboardsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
@@ -52,7 +49,7 @@ namespace DcssePortal.Web.Controllers
         [ValidateAntiForgeryToken]
 
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "ID,Title,Body,Date")] Noticeboard noticeboard)
+        public ActionResult Create(Noticeboard noticeboard)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +83,7 @@ namespace DcssePortal.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit([Bind(Include = "ID,NewsTitle,NewsContent,StartDate,EndDate")] Noticeboard noticeboard)
+        public ActionResult Edit(Noticeboard noticeboard)
         {
             if (ModelState.IsValid)
             {

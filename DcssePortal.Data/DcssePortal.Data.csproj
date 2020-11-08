@@ -137,6 +137,10 @@
     <Compile Include="Migrations\202011081814229_coureSecretCodeAdded.designer.cs">
       <DependentUpon>202011081814229_coureSecretCodeAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011081911086_datetimeChanged.cs" />
+    <Compile Include="Migrations\202011081911086_datetimeChanged.designer.cs">
+      <DependentUpon>202011081911086_datetimeChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -204,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011081814229_coureSecretCodeAdded.resx">
       <DependentUpon>202011081814229_coureSecretCodeAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011081911086_datetimeChanged.resx">
+      <DependentUpon>202011081911086_datetimeChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

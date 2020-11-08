@@ -56,7 +56,7 @@ namespace DcssePortal.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-        complaints.Student = db.Students.FirstOrDefault(x => x.User == db.Users.FirstOrDefault(y => HttpContext.User.Identity.GetUserId() == y.Id));
+        //complaints.Student = db.Students.FirstOrDefault(x => x.User == db.Users.FirstOrDefault(y => HttpContext.User.Identity.GetUserId() == y.Id));
                 db.Complaints.Add(complaints);
                 db.SaveChanges();
                 return RedirectToAction("Index");
