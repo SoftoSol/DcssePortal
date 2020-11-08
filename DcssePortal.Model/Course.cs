@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DcssePortal.Model
-{   [Table("tCourseContent")]
+{   [Table("tCourse")]
    public class Course
     {
         [Key]
@@ -18,7 +18,7 @@ namespace DcssePortal.Model
     public string SecretCode { get; set; }
     public virtual Faculty Faculty { get; set; }
 
-    //public virtual List<Feedback> Feedbacks { get; set; }
+    public virtual List<Feedback> Feedbacks { get; set; }
     public virtual List<Enrollment> Enrollments { get; set; }
     public virtual List<Content> Contents{ get; set; }
   }

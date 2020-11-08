@@ -11,9 +11,10 @@ namespace DcssePortal.Model
     {
         public int ID { get; set; }
         public string Title { get; set; }
-        public string Content { get; set; }
+        public string ContentUrl { get; set; }
+        public DateTime Date { get; set; }
         public string Department { get; set; }
-    public virtual Admin Admin { get; set; }
+        public virtual Admin Admin { get; set; }
 
     }
 }

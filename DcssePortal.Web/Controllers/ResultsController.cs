@@ -70,10 +70,10 @@ namespace DcssePortal.Web.Controllers
           ModelState.AddModelError("Invalid Enrollment", new Exception("Enrollment doesnot exists"));
         else
         {
-          result.Enrollment = db.Enrollments.FirstOrDefault(x => x.Student.ID == studentId && x.Course.ID == courseId);
-          result.TotalMarks = Request.Form["TotalMarks"];
+          //result.Enrollment = db.Enrollments.FirstOrDefault(x => x.Student.ID == studentId && x.Course.ID == courseId);
+          result.TotalMarks = Convert.ToInt16(Request.Form["TotalMarks"]);
           result.ObtainedMarks = Convert.ToInt16(Request.Form["ObtainedMarks"]);
-          result.ExternalMarks = Request.Form["ExternalMarks"];
+          result.ExternalMarks = Convert.ToInt16(Request.Form["ExternalMarks"]);
           result.InternalMarks = Convert.ToInt16(Request.Form["InternalMarks"]);
           result.Grade = _GetGrade(result.ObtainedMarks);
           db.Results.Add(result);

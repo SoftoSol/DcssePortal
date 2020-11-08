@@ -64,7 +64,7 @@ namespace DcssePortal.Web.Controllers
           ModelState.AddModelError("Invalid Enrollment", new Exception("Invalid Enrollment"));
         else
         {
-          feedback.Enrollment = db.Enrollments.FirstOrDefault(x => x.Course.ID == courseId && x.Student.ID == studentId);
+          //feedback.Enrollment = db.Enrollments.FirstOrDefault(x => x.Course.ID == courseId && x.Student.ID == studentId);
           db.Feedbacks.Add(feedback);
           db.SaveChanges();
           return RedirectToAction("Index");
@@ -112,7 +112,7 @@ namespace DcssePortal.Web.Controllers
           ModelState.AddModelError("Invalid Enrollment", new Exception("Invalid Enrollment"));
         else
         {
-          feedback.Enrollment = db.Enrollments.FirstOrDefault(x => x.Course.ID == courseId && x.Student.ID == studentId);
+          //feedback.Enrollment = db.Enrollments.FirstOrDefault(x => x.Course.ID == courseId && x.Student.ID == studentId);
           db.Entry(feedback).State = EntityState.Modified;
           db.SaveChanges();
           return RedirectToAction("Index");
