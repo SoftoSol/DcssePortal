@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using DcssePortal.Data;
+using DcssePortal.Model;
+
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using DcssePortal.Data;
-using DcssePortal.Model;
 
 namespace DcssePortal.Web.Controllers
 {
-  //[Authorize(Roles="Admin")]
+  [Authorize(Roles="Admin")]
     public class StudentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -24,7 +20,7 @@ namespace DcssePortal.Web.Controllers
         }
 
     // GET: Students/Details/5
-    //[Authorize(Roles = "Admin,Student")]
+    [Authorize(Roles = "Admin,Student")]
     public ActionResult Details(int? id)
         {
             if (id == null)

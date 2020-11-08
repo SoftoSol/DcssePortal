@@ -1,16 +1,18 @@
-﻿using System.Linq;
+﻿using DcssePortal.Data;
+using DcssePortal.Model;
+using DcssePortal.Web.Models;
+
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using DcssePortal.Web.Models;
-using DcssePortal.Model;
 using System.Web.UI.WebControls;
-using DcssePortal.Data;
-using System.Collections.Generic;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DcssePortal.Web.Controllers
 {

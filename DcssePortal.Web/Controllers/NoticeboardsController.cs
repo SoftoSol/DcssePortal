@@ -7,12 +7,13 @@ using System.Net;
 using System.Web.Mvc;
 
 namespace DcssePortal.Web.Controllers
-{
+{[Authorize(Roles ="Admin")]
   public class NoticeboardsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Noticeboards
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Noticeboards.ToList());
@@ -20,7 +21,8 @@ namespace DcssePortal.Web.Controllers
 
         // GET: Noticeboards/Details/5
         [AllowAnonymous]
-        public ActionResult Details(int? id)
+    [Authorize]
+    public ActionResult Details(int? id)
         {
             if (id == null)
             {

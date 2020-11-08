@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using DcssePortal.Data;
+using DcssePortal.Model;
+
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using DcssePortal.Data;
-using DcssePortal.Model;
 
 namespace DcssePortal.Web.Controllers
 {
+  [Authorize]
     public class CoursesSchemesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -97,7 +96,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: CoursesSchemes/Delete/5
-        //[Authorize(Roles ="Admin")]
+        [Authorize(Roles ="Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

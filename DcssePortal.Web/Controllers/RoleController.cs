@@ -1,13 +1,11 @@
 ﻿using DcssePortal.Data;
-using System;
-using System.Collections.Generic;
+
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace DcssePortal.Web.Controllers
 {
-    public class RoleController : Controller
+  public class RoleController : Controller
     {
         ApplicationDbContext ApplicationDbContext = new ApplicationDbContext();
         // GET: Role

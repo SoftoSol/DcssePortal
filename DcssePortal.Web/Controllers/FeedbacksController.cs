@@ -1,33 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using DcssePortal.Data;
+using DcssePortal.Model;
+using DcssePortal.Web.Models;
+
+using System;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Linq;
 using System.Net;
-using System.Runtime.InteropServices;
-using System.Web;
 using System.Web.Mvc;
-using DcssePortal.Data;
-using DcssePortal.Model;
-using DcssePortal.Web.Models;
 
 namespace DcssePortal.Web.Controllers
 {
+  [Authorize(Roles ="Faculty")]
     public class FeedbacksController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Feedbacks
-        public ActionResult Index()
+    // GET: Feedbacks
+    [Authorize(Roles = "Faculty,Student")]
+    public ActionResult Index()
         {
             return View(db.Feedbacks.ToList());
         }
 
-        // GET: Feedbacks/Details/5
+    // GET: Feedbacks/Details/5
 
-        //[Authorize(Roles = "Student")]
-        public ActionResult Details(int? id)
+    //[Authorize(Roles = "Student")]
+    [Authorize(Roles = "Faculty,Student")]
+    public ActionResult Details(int? id)
         {
             if (id == null)
             {

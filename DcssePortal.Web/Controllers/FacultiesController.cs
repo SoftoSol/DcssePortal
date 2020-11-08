@@ -1,5 +1,6 @@
 ﻿using DcssePortal.Data;
 using DcssePortal.Model;
+
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -7,7 +8,7 @@ using System.Web.Mvc;
 
 namespace DcssePortal.Web.Controllers
 {
-    //[Authorize(Roles ="Student, Admin")]
+  [Authorize(Roles ="Admin")]
     public class FacultiesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

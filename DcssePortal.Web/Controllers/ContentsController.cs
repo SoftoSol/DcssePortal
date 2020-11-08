@@ -1,29 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using DcssePortal.Data;
+using DcssePortal.Model;
+
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using DcssePortal.Data;
-using DcssePortal.Model;
 
 namespace DcssePortal.Web.Controllers
 {
-    public class ContentsController : Controller
+  public class ContentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Contents
-        public ActionResult Index()
+    // GET: Contents
+    [Authorize(Roles = "Student, Faculty")]
+    public ActionResult Index()
         {
             return View(db.Contents.ToList());
         }
 
         // GET: Contents/Details/5
-        //[Authorize(Roles ="Student, Faculty")]
+        [Authorize(Roles ="Student, Faculty")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,7 +37,7 @@ namespace DcssePortal.Web.Controllers
         }
         
         // GET: Contents/Create
-        //[Authorize(Roles ="Faculty")]
+        [Authorize(Roles ="Faculty")]
         public ActionResult Create()
         {
             return View();
@@ -50,7 +48,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles="Faculty")]
+        [Authorize(Roles="Faculty")]
         public ActionResult Create(Content content)
         {
             if (ModelState.IsValid)
@@ -65,7 +63,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Contents/Edit/5
-        //[Authorize(Roles="Faculty")]
+        [Authorize(Roles="Faculty")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,7 +83,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles="Faculty")]
+        [Authorize(Roles="Faculty")]
         public ActionResult Edit(Content content)
         {
             if (ModelState.IsValid)
@@ -99,7 +97,7 @@ namespace DcssePortal.Web.Controllers
         }
 
         // GET: Contents/Delete/5
-        //[Authorize(Roles="Faculty")]
+        [Authorize(Roles="Faculty")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,7 +115,7 @@ namespace DcssePortal.Web.Controllers
         // POST: Contents/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles="Faculty")]
+        [Authorize(Roles="Faculty")]
         public ActionResult DeleteConfirmed(int id)
         {
             Content content = db.Contents.Find(id);

@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using DcssePortal.Data;
+using DcssePortal.Model;
+
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Runtime.InteropServices;
-using System.Web;
 using System.Web.Mvc;
-using DcssePortal.Data;
-using DcssePortal.Model;
 
 namespace DcssePortal.Web.Controllers
 {
+  [Authorize(Roles ="Admin")]
   public class EnrollmentsController : Controller
   {
     private ApplicationDbContext db = new ApplicationDbContext();

@@ -1,24 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Core;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using DcssePortal.Data;
+﻿using DcssePortal.Data;
 using DcssePortal.Model;
 using DcssePortal.Web.Models;
 
+using System;
+using System.Data.Entity;
+using System.Data.Entity.Core;
+using System.Linq;
+using System.Net;
+using System.Web.Mvc;
+
 namespace DcssePortal.Web.Controllers
 {
+  [Authorize(Roles ="Admin")]
   public class ResultsController : Controller
   {
     private ApplicationDbContext db = new ApplicationDbContext();
 
     // GET: Results
+    [Authorize(Roles ="Admin,Student")]
     public ActionResult Index()
     {
       var viewModel = new CreateResultViewModel();
@@ -29,7 +28,7 @@ namespace DcssePortal.Web.Controllers
 
     // GET: Results/Details/5
 
-    //[Authorize(Roles = "Admin,Student")]
+    [Authorize(Roles = "Admin,Student")]
     public ActionResult Details(int? id)
     {
       if (id == null)
