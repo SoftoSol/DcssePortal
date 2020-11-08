@@ -33,6 +33,7 @@ namespace DcssePortal.Data
       modelBuilder.Entity<Noticeboard>().Property(x => x.Date).HasColumnType("datetime2");
       modelBuilder.Entity<DateSheet>().Property(x => x.Date).HasColumnType("datetime2");
       modelBuilder.Entity<CoursesScheme>().Property(x => x.Date).HasColumnType("datetime2");
+      modelBuilder.Entity<Feedback>().Property(x => x.Date).HasColumnType("datetime2");
       //modelBuilder.Entity<Feedback>().HasRequired(x => x.Enrollment);
       //modelBuilder.Entity<Enrollment>().HasOptional(x => x.Feedback);
       //modelBuilder.Entity<Feedback>().has

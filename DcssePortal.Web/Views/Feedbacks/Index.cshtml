@@ -12,10 +12,13 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Course.CourseTitle)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FileURL)
+            @Html.DisplayNameFor(model => model.Date)
         </th>
         <th></th>
     </tr>
@@ -23,10 +26,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Course.CourseTitle)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FileURL)
+            @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |

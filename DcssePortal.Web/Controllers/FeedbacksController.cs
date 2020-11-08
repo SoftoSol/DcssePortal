@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -9,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using DcssePortal.Data;
 using DcssePortal.Model;
+using DcssePortal.Web.Models;
 
 namespace DcssePortal.Web.Controllers
 {
@@ -44,7 +46,6 @@ namespace DcssePortal.Web.Controllers
         public ActionResult Create()
         {
       ViewBag.Courses = db.Courses.ToList();
-      ViewBag.Students = db.Students.ToList();
             return View();
         }
 
@@ -54,14 +55,19 @@ namespace DcssePortal.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //[Authorize(Roles = "Faculty")]
-        public ActionResult Create(Feedback feedback)
+        public ActionResult Create(FeedbackViewModel viewModel)
         {
+      Feedback feedback = new Feedback();
       if (ModelState.IsValid)
       {
-        var studentId = Convert.ToInt32(Request.Form["Student"]);
+        feedback.Date = DateTime.Now;
+        feedback.Title = viewModel.Title;
+        feedback.Course = db.Courses.FirstOrDefault(x => x.ID == viewModel.Course);
+        if (feedback.Course == null) throw new Exception("Could not find course");
+        var facultyId = db.Faculties.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email).ID;
         var courseId = Convert.ToInt32(Request.Form["Course"]);
-        if (!db.Enrollments.Any(x => x.Course.ID == courseId && x.Student.ID == studentId))
-          ModelState.AddModelError("Invalid Enrollment", new Exception("Invalid Enrollment"));
+        if (!db.Courses.Any(x => x.ID == courseId && x.Faculty.ID == facultyId))
+         throw new Exception("Invalid Enrollment");
         else
         {
           //feedback.Enrollment = db.Enrollments.FirstOrDefault(x => x.Course.ID == courseId && x.Student.ID == studentId);
@@ -72,7 +78,6 @@ namespace DcssePortal.Web.Controllers
       }
 
       ViewBag.Courses = db.Courses.ToList();
-      ViewBag.Students = db.Students.ToList();
       return View(feedback);
         }
 
@@ -85,14 +90,20 @@ namespace DcssePortal.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Feedback feedback = db.Feedbacks.Find(id);
+      
             if (feedback == null)
             {
                 return HttpNotFound();
             }
 
       ViewBag.Courses = db.Courses.ToList();
-      ViewBag.Students = db.Students.ToList();
-      return View(feedback);
+      FeedbackViewModel feedbackViewModel = new FeedbackViewModel()
+      {
+        ID = feedback.ID,
+        Title = feedback.Title,
+        Course = feedback.Course.ID
+      };
+      return View(feedbackViewModel);
         }
 
         // POST: Feedbacks/Edit/5
@@ -101,15 +112,21 @@ namespace DcssePortal.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //[Authorize(Roles = "Faculty")]
-        public ActionResult Edit(Feedback feedback)
-        {
+        public ActionResult Edit(FeedbackViewModel viewModel)
+    {
+      Feedback feedback;// = new Feedback();
       if (ModelState.IsValid)
       {
-
-        var studentId = Convert.ToInt32(Request.Form["Student"]);
+        feedback = db.Feedbacks.Find(viewModel.ID);
+        if (feedback == null) throw new ObjectNotFoundException("Feedback not found.");
+        feedback.Date = DateTime.Now;
+        feedback.Title = viewModel.Title;
+        feedback.Course = db.Courses.FirstOrDefault(x => x.ID == viewModel.Course);
+        if (feedback.Course == null) throw new Exception("Could not find course");
+        var facultyId = db.Faculties.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email).ID;
         var courseId = Convert.ToInt32(Request.Form["Course"]);
-        if (!db.Enrollments.Any(x => x.Course.ID == courseId && x.Student.ID == studentId))
-          ModelState.AddModelError("Invalid Enrollment", new Exception("Invalid Enrollment"));
+        if (!db.Courses.Any(x => x.ID == courseId && x.Faculty.ID == facultyId))
+          throw new Exception("Invalid Enrollment");
         else
         {
           //feedback.Enrollment = db.Enrollments.FirstOrDefault(x => x.Course.ID == courseId && x.Student.ID == studentId);
@@ -121,7 +138,7 @@ namespace DcssePortal.Web.Controllers
 
       ViewBag.Courses = db.Courses.ToList();
       ViewBag.Students = db.Students.ToList();
-      return View(feedback);
+      return View(viewModel);
         }
 
         // GET: Feedbacks/Delete/5
