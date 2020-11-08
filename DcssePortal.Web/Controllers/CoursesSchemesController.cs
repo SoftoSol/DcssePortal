@@ -49,10 +49,11 @@ namespace DcssePortal.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles ="Admin")]
-        public ActionResult Create([Bind(Include = "ID,CourseCode,CourseName,credithour,SemesterOffer,Department")] CoursesScheme coursesScheme)
+        public ActionResult Create(CoursesScheme coursesScheme)
         {
             if (ModelState.IsValid)
             {
+        coursesScheme.Date = DateTime.Now;
                 db.CoursesSchemes.Add(coursesScheme);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,10 +84,11 @@ namespace DcssePortal.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles ="Admin")]
-        public ActionResult Edit([Bind(Include = "ID,CourseCode,CourseName,credithour,SemesterOffer,Department")] CoursesScheme coursesScheme)
+        public ActionResult Edit(CoursesScheme coursesScheme)
         {
             if (ModelState.IsValid)
             {
+        coursesScheme.Date = DateTime.Now;
                 db.Entry(coursesScheme).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

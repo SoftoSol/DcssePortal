@@ -141,6 +141,14 @@
     <Compile Include="Migrations\202011081911086_datetimeChanged.designer.cs">
       <DependentUpon>202011081911086_datetimeChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011081922370_datetimeTypeChangedForDateSheet.cs" />
+    <Compile Include="Migrations\202011081922370_datetimeTypeChangedForDateSheet.designer.cs">
+      <DependentUpon>202011081922370_datetimeTypeChangedForDateSheet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011081927537_dateTypeChangedForCourseScheme.cs" />
+    <Compile Include="Migrations\202011081927537_dateTypeChangedForCourseScheme.designer.cs">
+      <DependentUpon>202011081927537_dateTypeChangedForCourseScheme.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -211,6 +219,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011081911086_datetimeChanged.resx">
       <DependentUpon>202011081911086_datetimeChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011081922370_datetimeTypeChangedForDateSheet.resx">
+      <DependentUpon>202011081922370_datetimeTypeChangedForDateSheet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011081927537_dateTypeChangedForCourseScheme.resx">
+      <DependentUpon>202011081927537_dateTypeChangedForCourseScheme.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

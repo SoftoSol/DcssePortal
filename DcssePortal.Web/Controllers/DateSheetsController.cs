@@ -59,6 +59,7 @@ namespace DcssePortal.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+        dateSheet.Date = DateTime.Now;
                 db.DateSheets.Add(dateSheet);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -95,7 +96,8 @@ namespace DcssePortal.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(dateSheet).State = EntityState.Modified;
+        dateSheet.Date = DateTime.Now;
+        db.Entry(dateSheet).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
