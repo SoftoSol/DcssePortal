@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
@@ -59,23 +60,23 @@ namespace DcssePortal.Web.Controllers
     [HttpPost]
     [ValidateAntiForgeryToken]
     //[Authorize(Roles = "Admin")]
-    public ActionResult Create(FormCollection forms)
+    public ActionResult Create(ResultViewModel viewModel)
     {
       var result = new Result();
       if (ModelState.IsValid)
       {
-        var studentId = Convert.ToInt32(Request.Form["Enrollment.Student"]);
-        var courseId = Convert.ToInt32(Request.Form["Enrollment.Course"]);
+        var studentId = Convert.ToInt32(Request.Form["Student"]);
+        var courseId = Convert.ToInt32(Request.Form["Course"]);
         if (!db.Enrollments.Any(x => x.Student.ID == studentId && x.Course.ID == courseId))
-          ModelState.AddModelError("Invalid Enrollment", new Exception("Enrollment doesnot exists"));
+          throw new Exception("Enrollment doesnot exists");
         else
         {
           //result.Enrollment = db.Enrollments.FirstOrDefault(x => x.Student.ID == studentId && x.Course.ID == courseId);
-          result.TotalMarks = Convert.ToInt16(Request.Form["TotalMarks"]);
-          result.ObtainedMarks = Convert.ToInt16(Request.Form["ObtainedMarks"]);
-          result.ExternalMarks = Convert.ToInt16(Request.Form["ExternalMarks"]);
-          result.InternalMarks = Convert.ToInt16(Request.Form["InternalMarks"]);
-          result.Grade = _GetGrade(result.ObtainedMarks);
+          result.Student = db.Students.FirstOrDefault(x => x.ID == studentId);
+          result.Course = db.Courses.FirstOrDefault(x => x.ID == courseId);
+          if (result.Student == null || result.Course == null) throw new ObjectNotFoundException();
+          result.ExternalMarks = viewModel.External;
+          result.InternalMarks = viewModel.Internal;
           db.Results.Add(result);
           db.SaveChanges();
           return RedirectToAction("Index");
@@ -84,7 +85,7 @@ namespace DcssePortal.Web.Controllers
 
       ViewBag.Courses = db.Courses.ToList();
       ViewBag.Students = db.Students.ToList();
-      return View(result);
+      return View(viewModel);
     }
 
     // GET: Results/Edit/5
@@ -95,12 +96,22 @@ namespace DcssePortal.Web.Controllers
       {
         return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
       }
-      Result result = db.Results.Find(id);
+      Result result = db.Results.Include(x=>x.Student).Include(x=>x.Course).ToList().Find(x=>x.ID==id);
       if (result == null)
       {
         return HttpNotFound();
       }
-      return View(result);
+      var viewModel = new ResultViewModel
+      {
+        ID = result.ID,
+        Internal = result.InternalMarks,
+        External = result.ExternalMarks,
+        Course=result.Course.ID,
+        Student=result.Student.ID
+      };
+      ViewBag.Courses = db.Courses.ToList();
+      ViewBag.Students = db.Students.ToList();
+      return View(viewModel);
     }
 
     // POST: Results/Edit/5
@@ -109,16 +120,24 @@ namespace DcssePortal.Web.Controllers
     [HttpPost]
     [ValidateAntiForgeryToken]
    // [Authorize(Roles = "Admin")]
-    public ActionResult Edit(Result result)
+    public ActionResult Edit(ResultViewModel viewModel)
     {
+      var result = db.Results.Find(viewModel.ID);
+      if (result == null) throw new ObjectNotFoundException("Result not found");
       if (ModelState.IsValid)
       {
-        result.Grade = _GetGrade(result.ObtainedMarks);
+        result.InternalMarks = viewModel.Internal;
+        result.ExternalMarks = viewModel.External;
+        result.Course = db.Courses.Find(viewModel.Course);
+        result.Student = db.Students.Find(viewModel.Student);
+        if (result.Course == null || result.Student == null) throw new ObjectNotFoundException("Could not find Enrollment");
         db.Entry(result).State = EntityState.Modified;
         db.SaveChanges();
         return RedirectToAction("Index");
       }
-      return View(result);
+      ViewBag.Courses = db.Courses.ToList();
+      ViewBag.Students = db.Students.ToList();
+      return View(viewModel);
     }
 
     // GET: Results/Delete/5

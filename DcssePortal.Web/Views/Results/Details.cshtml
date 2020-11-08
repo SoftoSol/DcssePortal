@@ -11,19 +11,80 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TotalMarks)
+            @Html.DisplayNameFor(model => model.Student.RegNo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TotalMarks)
+            @Html.DisplayFor(model => model.Student.RegNo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ObtainedMarks)
+            @Html.DisplayNameFor(model => model.Course.CourseCode)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ObtainedMarks)
+            @Html.DisplayFor(model => model.Course.CourseCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InternalMarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InternalMarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExternalMarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExternalMarks)
+        </dd>
+        <dt>
+           Obtained Marks
+        </dt>
+
+        <dd>
+            @(Model.InternalMarks+Model.ExternalMarks)
+        </dd>
+        <dt>
+           Grade
+        </dt>
+
+        <dd>
+            @if (Model.ExternalMarks + Model.InternalMarks >= 80)
+            {
+                <span>A</span>
+            }
+            else if (Model.ExternalMarks + Model.InternalMarks >= 75)
+            {
+                <span>B+</span>
+            }
+            else if (Model.ExternalMarks + Model.InternalMarks >= 70)
+            {
+                <span>B</span>
+            }
+            else if (Model.ExternalMarks + Model.InternalMarks >= 65)
+            {
+                <span>C+</span>
+            }
+            else if (Model.ExternalMarks + Model.InternalMarks >= 60)
+            {
+                <span>C</span>
+            }
+            else if (Model.ExternalMarks + Model.InternalMarks >= 55)
+            {
+                <span>D+</span>
+            }
+            else if (Model.ExternalMarks + Model.InternalMarks >= 50)
+            {
+                <span>D</span>
+            }
+            else
+            {
+                <span>F</span>
+            }
         </dd>
 
     </dl>

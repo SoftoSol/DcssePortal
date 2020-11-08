@@ -153,6 +153,10 @@
     <Compile Include="Migrations\202011082003247_dateTypeChangedForFeedback.designer.cs">
       <DependentUpon>202011082003247_dateTypeChangedForFeedback.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011082043214_resultModelUpdated.cs" />
+    <Compile Include="Migrations\202011082043214_resultModelUpdated.designer.cs">
+      <DependentUpon>202011082043214_resultModelUpdated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -232,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011082003247_dateTypeChangedForFeedback.resx">
       <DependentUpon>202011082003247_dateTypeChangedForFeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011082043214_resultModelUpdated.resx">
+      <DependentUpon>202011082043214_resultModelUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

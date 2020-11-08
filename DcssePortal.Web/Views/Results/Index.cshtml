@@ -25,26 +25,21 @@
             <tr>
 
                 <th>
-            @Html.DisplayNameFor(model => model.Enrollment.Student.RegNo)
+            @Html.DisplayNameFor(model => model.Student.RegNo)
         </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Enrollment.Student.FirstName)
+                    @Html.DisplayNameFor(model => model.Student.FirstName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Enrollment.Student.LastName)
+                    @Html.DisplayNameFor(model => model.Student.LastName)
                 </th>
 
                 <th>
-                    @Html.DisplayNameFor(model => model.Enrollment.Course.CourseCode)
+                    @Html.DisplayNameFor(model => model.Course.CourseCode)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Enrollment.Course.CourseTitle)
+                    @Html.DisplayNameFor(model => model.Course.CourseTitle)
                 </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.Enrollment.Student.Batch)
-                </th>
-
                 <th>
                     @Html.DisplayNameFor(model => model.InternalMarks)
                 </th>
@@ -52,14 +47,14 @@
                     @Html.DisplayNameFor(model => model.ExternalMarks)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.ObtainedMarks)
+                    ObtainedMarks
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TotalMarks)
+                    TotalMarks
                 </th>
 
                 <th>
-                    @Html.DisplayNameFor(model => model.Grade)
+                    Grade
                 </th>
                 <th>
                     @Html.Label("Actions")
@@ -72,22 +67,19 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(model => item.Enrollment.Student.RegNo)
+                        @Html.DisplayFor(model => item.Student.RegNo)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => item.Enrollment.Student.FirstName)
+                        @Html.DisplayFor(model => item.Student.FirstName)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => item.Enrollment.Student.LastName)
+                        @Html.DisplayFor(model => item.Student.LastName)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => item.Enrollment.Course.CourseCode)
+                        @Html.DisplayFor(model => item.Course.CourseCode)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => item.Enrollment.Course.CourseTitle)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => item.Enrollment.Student.Batch)
+                        @Html.DisplayFor(model => item.Course.CourseTitle)
                     </td>
                     <td>
                         @Html.DisplayFor(model=> item.InternalMarks)
@@ -96,13 +88,45 @@
                         @Html.DisplayFor(model=> item.ExternalMarks)
                     </td>
                     <td>
-                        @Html.DisplayFor(model=> item.ObtainedMarks)
+                        @(item.ExternalMarks + item.InternalMarks)
                     </td>
                     <td>
-                        @Html.DisplayFor(model => item.TotalMarks)
+                       100
                     </td>
                     <td>
-                        @Html.DisplayFor(model => item.Grade)
+                        @if (item.ExternalMarks + item.InternalMarks >= 80)
+                        {
+                            <span>A</span>
+                        }
+                        else if (item.ExternalMarks + item.InternalMarks >= 75)
+                        {
+                            <span>B+</span>
+                        }
+                        else if (item.ExternalMarks + item.InternalMarks >= 70)
+                        {
+                            <span>B</span>
+                        }
+                        else if (item.ExternalMarks + item.InternalMarks >= 65)
+                        {
+                            <span>C+</span>
+                        }
+                        else if (item.ExternalMarks + item.InternalMarks >= 60)
+                        {
+                            <span>C</span>
+                        }
+                        else if (item.ExternalMarks + item.InternalMarks >= 55)
+                        {
+                            <span>D+</span>
+                        }
+                        else if (item.ExternalMarks + item.InternalMarks >= 50)
+                        {
+                            <span>D</span>
+                        }
+                        else 
+                        {
+                            <span>F</span>
+                        }
+
                     </td>
                     <td>
                         <a href="@Url.Action("Edit", new { id = item.ID })" class=" " style="font-size:20px; color:lightseagreen; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Edit">

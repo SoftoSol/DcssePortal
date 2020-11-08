@@ -13,17 +13,15 @@ namespace DcssePortal.Model
     {
         [Key]
         public int ID { get; set; }
-        public short TotalMarks { get; set; }
-        public short ObtainedMarks { get; set; }
         public short InternalMarks { get; set; }
         public short ExternalMarks { get; set; }
+        public short Semester { get; set; }
         public virtual Student Student { get; set; }
-        public string Grade { get; set; }
-
+        public virtual Course Course { get; set; }
     //[ForeignKey("Enrollment")]
     //public int EnrollmentId { get; set; }
     //public virtual Enrollment Enrollment { get; set; }
 
 
-    }
+  }
 }
