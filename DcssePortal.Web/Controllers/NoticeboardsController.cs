@@ -52,7 +52,7 @@ namespace DcssePortal.Web.Controllers
         [ValidateAntiForgeryToken]
 
         [Authorize(Roles = "Admin")]
-        public ActionResult Create([Bind(Include = "ID,NewsTitle,NewsContent,StartDate,EndDate")] Noticeboard noticeboard)
+        public ActionResult Create([Bind(Include = "ID,Title,Body,Date")] Noticeboard noticeboard)
         {
             if (ModelState.IsValid)
             {

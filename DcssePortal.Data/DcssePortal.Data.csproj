@@ -118,6 +118,14 @@
     <Compile Include="Migrations\202011022225506_feedbackMigrationFixed.designer.cs">
       <DependentUpon>202011022225506_feedbackMigrationFixed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011062139076_test.cs" />
+    <Compile Include="Migrations\202011062139076_test.designer.cs">
+      <DependentUpon>202011062139076_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011062141593_test1.cs" />
+    <Compile Include="Migrations\202011062141593_test1.designer.cs">
+      <DependentUpon>202011062141593_test1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -176,6 +184,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011022225506_feedbackMigrationFixed.resx">
       <DependentUpon>202011022225506_feedbackMigrationFixed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011062139076_test.resx">
+      <DependentUpon>202011062139076_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011062141593_test1.resx">
+      <DependentUpon>202011062141593_test1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

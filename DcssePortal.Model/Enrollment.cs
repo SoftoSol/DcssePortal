@@ -15,10 +15,10 @@ namespace DcssePortal.Model
     [Key]
     public int ID { get; set; }
     [Required]
-    [Index("IX_Course_And_Student", 1, IsUnique = true)]
+    [Index("IX_Course_And_Student", 1)]
     public virtual Course Course { get; set; }
     [Required]
-    [Index("IX_Course_And_Student", 2, IsUnique = true)]
+    [Index("IX_Course_And_Student", 2)]
     public virtual Student Student { get; set; }
     //public virtual Feedback Feedback { get; set; }
   }

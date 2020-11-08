@@ -42,7 +42,7 @@ namespace DcssePortal.Web.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
-      return RedirectToAction("register", "account");
+            return RedirectToAction("register", "account");
             return View();
         }
 
@@ -51,7 +51,7 @@ namespace DcssePortal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,FirstName,LastName,Email,Password,Phone,Age,Profiile")] Student student)
+        public ActionResult Create([Bind(Include = "ID,FirstName,LastName,Email,Password,Phone,Age,PhotoUrl")] Student student)
         {
             if (ModelState.IsValid)
             {

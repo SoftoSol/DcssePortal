@@ -13,11 +13,9 @@ namespace DcssePortal.Model
     {
         [Key]
         public int ID { get; set; }
-        public string NewsTitle { get; set; }
-        public string NewsContent { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-
-    public virtual Admin Admin { get; set; }
+        public string Title { get; set; }
+        public string Body { get; set; }
+        public DateTime Date { get; set; }
+        public virtual Admin Admin { get; set; }
     }
 }

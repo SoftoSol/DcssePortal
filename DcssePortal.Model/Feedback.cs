@@ -16,9 +16,11 @@ namespace DcssePortal.Model
         [Key]
         public int ID { get; set; }
         public string Title { get; set; }
+        public DateTime Date { get; set; }
         public string FileURL { get; set; }
+        public virtual Course Course { get; set; }
     //[ForeignKey("Enrollment")]
     //public int EnrollmentId { get; set; }
-    public virtual Enrollment Enrollment { get; set; }
+    //public virtual Enrollment Enrollment { get; set; }
     }
 }

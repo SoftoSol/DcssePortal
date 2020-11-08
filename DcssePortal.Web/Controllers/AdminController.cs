@@ -11,11 +11,9 @@ namespace DcssePortal.Web.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-      var db = new DcssePortal.Data.ApplicationDbContext();
+            var db = new DcssePortal.Data.ApplicationDbContext();
             return View(db.Admins.ToList());
         }
-
-
 
     }
 }
