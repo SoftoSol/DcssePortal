@@ -71,8 +71,9 @@ namespace DcssePortal.Web.Controllers
           ModelState.AddModelError("File upload error", "Failed to upload file.");
         }
       }
-
-      return View(coursesScheme);
+      CourseSchemeViewModel viewModel = new CourseSchemeViewModel();
+      TryUpdateModel(viewModel);
+      return View(viewModel);
     }
 
 

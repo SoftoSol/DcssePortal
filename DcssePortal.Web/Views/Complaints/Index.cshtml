@@ -11,13 +11,15 @@
     <h2 class="pt-3">
         <b>Complaints</b>
     </h2>
+    @if (User.IsInRole("Student"))
+    {
     <a href="@Url.Action("Create")" class="btn btn-success float-right mb-2">
         <i class="fas fa-plus-circle"></i>
         <span>
             <strong>Add New Complaint</strong>
         </span>
     </a>
-
+    }
 
     <table id="myTableName" class="table table-bordered table-striped table-hover table-responsive-lg">
         <thead>
@@ -44,28 +46,17 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Detail)
                     </td>
+               
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        @if (Helper.CurrentUserRole == eUserRoles.Admin)
+                        @if (User.IsInRole("Student"))
                         {
-                            Html.ActionLink("Details", "Details", new { id = item.ID });
-
-                        }
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                    </td>
-                    <td>
-                        <a href="@Url.Action("Create",new { id=item.ID} )" class=" " style="font-size:20px; color:lightseagreen; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Edit">
-                            <i class="fas fa-pencil-alt"></i>
-                            @*<span>
-                            <strong>Edit</strong>
-                        </span>*@
-                        </a>
-                        <a href="@Url.Action("Delete",new { id=item.ID} )" class=" " style="font-size:20px; color:red; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Delete">
+                        <a href="@Url.Action("Delete", new { id = item.ID })" class=" " style="font-size:20px; color:red; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Delete">
                             <i class="fas fa-trash-alt"></i>
                             @*<span>
                             <strong>Delete</strong>
                         </span>*@
                         </a>
+                        }
                         <a href="@Url.Action("Details",new { id=item.ID} )" class=" " style="font-size:20px; color:orange; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Detail">
                             <i class="fas fa-book"></i>
                             @*<span>

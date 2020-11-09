@@ -24,9 +24,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Title)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ContentUrl)
-                </th>
+                @*<th>
+            @Html.DisplayNameFor(model => model.ContentUrl)
+        </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.Department)
                 </th>
@@ -43,19 +43,14 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.ContentUrl)
-                    </td>
+                    </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.Department)
                     </td>
                     <td>
-                        <a href="@Url.Action("Edit",new { id=item.ID} )" class=" " style="font-size:20px; color:lightseagreen; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Edit">
-                            <i class="fas fa-pencil-alt"></i>
-                            @*<span>
-                            <strong>Edit</strong>
-                        </span>*@
-                        </a>
+                       
                         <a href="@Url.Action("Delete",new { id=item.ID} )" class=" " style="font-size:20px; color:red; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Delete">
                             <i class="fas fa-trash-alt"></i>
                             @*<span>

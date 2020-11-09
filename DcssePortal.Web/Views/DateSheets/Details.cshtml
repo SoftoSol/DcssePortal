@@ -23,7 +23,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ContentUrl)
+            @using (Html.BeginForm("download", "Datesheets", FormMethod.Get))
+            {
+                @Html.HiddenFor(x => x.ID)
+                <input type="submit" value="Download File" />
+            }
         </dd>
 
         <dt>
@@ -37,6 +41,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -232,7 +232,7 @@ namespace DcssePortal.Web.Controllers
             admin.User = currentUser;
             ApplicationDbContext.Admins.Add(admin);
             ApplicationDbContext.SaveChanges();
-            return RedirectToAction("Index", "Admin");
+            return RedirectToAction("Index", "Admins");
           }
           //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 

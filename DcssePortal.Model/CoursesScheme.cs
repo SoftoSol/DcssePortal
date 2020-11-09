@@ -13,6 +13,7 @@ namespace DcssePortal.Model
     {
         [Key]
         public int ID { get; set; }
+    
         public string Title { get; set; }
         public string FileUrl { get; set; }
         public DateTime Date { get; set; }

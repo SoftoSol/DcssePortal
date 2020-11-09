@@ -1,10 +1,12 @@
 ﻿using DcssePortal.Data;
 using DcssePortal.Model;
-
+using DcssePortal.Web.Models;
 using System;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace DcssePortal.Web.Controllers
@@ -48,28 +50,51 @@ namespace DcssePortal.Web.Controllers
             return View();
         }
 
-        // POST: DateSheets/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles ="Admin")]
-        public ActionResult Create([Bind(Include = "ID,Title,Content,Department")] DateSheet dateSheet)
-        {
-            if (ModelState.IsValid)
-            {
+    // POST: DateSheets/Create
+    // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+    // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Admin")]
+    public ActionResult Create(HttpPostedFileBase File)
+    {
+      DateSheet dateSheet = new DateSheet();
+      TryUpdateModel(dateSheet);
+   
+      if (ModelState.IsValid)
+      {
+
         dateSheet.Date = DateTime.Now;
-                db.DateSheets.Add(dateSheet);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(dateSheet);
+        var filePath = uploadFile(File);
+        if (filePath != "")
+        {
+          dateSheet.ContentUrl = filePath;
+          db.DateSheets.Add(dateSheet);
+          db.SaveChanges();
+          return RedirectToAction("Index");
         }
+      }
+      DateSheetViewModel viewModel = new DateSheetViewModel();
+      TryUpdateModel(viewModel);
+      return View(viewModel);
+    }
 
-        // GET: DateSheets/Edit/5
 
-        [Authorize(Roles = "Admin")]
+    public FileResult Download(int id)
+    {
+      var file = db.DateSheets.FirstOrDefault(x => x.ID == id);
+      if (file == null)
+        throw new Exception("Datesheet not found.");
+      byte[] fileBytes = System.IO.File.ReadAllBytes(file.ContentUrl);
+      string fileName = "datesheet.pdf";
+      return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Pdf, fileName);
+    }
+
+
+
+    // GET: DateSheets/Edit/5
+
+    [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -141,5 +166,22 @@ namespace DcssePortal.Web.Controllers
             }
             base.Dispose(disposing);
         }
+    [NonAction]
+    private string uploadFile(HttpPostedFileBase file)
+    {
+      try
+      {
+        if (file.ContentLength > 0)
+        {
+          string _FileName = Path.GetFileName(file.FileName);
+          string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), DateTime.Now.ToLongDateString()+"_Datesheet_" + _FileName);
+          file.SaveAs(_path);
+
+          return _path;
+        }
+      }
+      catch { }
+      return "";
     }
+  }
 }

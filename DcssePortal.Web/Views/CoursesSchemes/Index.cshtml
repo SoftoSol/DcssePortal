@@ -51,12 +51,7 @@
                         @Html.DisplayFor(modelItem => item.Date)
                     </td>
                     <td>
-                        <a href="@Url.Action("Edit",new { id=item.ID} )" class=" " style="font-size:20px; color:lightseagreen; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Edit">
-                            <i class="fas fa-pencil-alt"></i>
-                            @*<span>
-                            <strong>Edit</strong>
-                        </span>*@
-                        </a>
+
                         <a href="@Url.Action("Delete",new { id=item.ID} )" class=" " style="font-size:20px; color:red; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Delete">
                             <i class="fas fa-trash-alt"></i>
                             @*<span>

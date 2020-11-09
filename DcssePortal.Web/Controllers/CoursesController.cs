@@ -12,8 +12,8 @@ using System.Web.Mvc;
 namespace DcssePortal.Web.Controllers
 {
   public class CoursesController : Controller
-    {
-        private ApplicationDbContext db = new ApplicationDbContext();
+  {
+    private ApplicationDbContext db = new ApplicationDbContext();
 
     // GET: Courses
     [Authorize(Roles = "Student, Faculty")]
@@ -35,123 +35,120 @@ namespace DcssePortal.Web.Controllers
       return View(list);
     }
 
-    private List<Course> Faculty()
+    // GET: Courses/Details/5
+    [Authorize(Roles = "Student, Faculty")]
+    public ActionResult Details(int? id)
     {
-      var faculty = db.Faculties.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
-     return db.Courses.Where(x => x.Faculty == faculty).ToList();
+      if (id == null)
+      {
+        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+      }
+      Course course = db.Courses.Find(id);
+      if (course == null)
+      {
+        return HttpNotFound();
+      }
+      return View(course);
     }
 
+    // GET: Courses/Create
+    [Authorize(Roles = "Faculty")]
+    public ActionResult Create()
+    {
+      return View();
+    }
 
-        // GET: Courses/Details/5
-        [Authorize(Roles ="Student, Faculty")]
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Course course = db.Courses.Find(id);
-            if (course == null)
-            {
-                return HttpNotFound();
-            }
-            return View(course);
-        }
-
-        // GET: Courses/Create
-        [Authorize(Roles ="Faculty")]
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Courses/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles ="Faculty")]
-        public ActionResult Create(Course course)
-        {
-            if (ModelState.IsValid)
-            {
+    // POST: Courses/Create
+    // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+    // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Faculty")]
+    public ActionResult Create(Course course)
+    {
+      if (ModelState.IsValid)
+      {
         var faculties = from faculty in db.Faculties
-                              join user in db.Users on faculty.Email equals user.Email
-                              select faculty;
-        if (faculties.Count() ==0)
+                        join user in db.Users on faculty.Email equals user.Email
+                        select faculty;
+        if (faculties.Count() == 0)
         {
           throw new ObjectNotFoundException("faculty not found");
         }
         course.Faculty = faculties.First();
+        if (db.Courses.Any(x => x.CourseCode == course.CourseCode && course.Faculty.ID == x.Faculty.ID))
+        {
+          throw new Exception("Course already assigned");
+        }
         db.Courses.Add(course);
 
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        db.SaveChanges();
+        return RedirectToAction("Index");
+      }
 
-            return View(course);
-        }
+      return View(course);
+    }
 
-        // GET: Courses/Edit/5
-        [Authorize(Roles ="Faculty")]
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Course course = db.Courses.Find(id);
-            if (course == null)
-            {
-                return HttpNotFound();
-            }
-            return View(course);
-        }
+    // GET: Courses/Edit/5
+    [Authorize(Roles = "Faculty")]
+    public ActionResult Edit(int? id)
+    {
+      if (id == null)
+      {
+        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+      }
+      Course course = db.Courses.Find(id);
+      if (course == null)
+      {
+        return HttpNotFound();
+      }
+      return View(course);
+    }
 
-        // POST: Courses/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles ="Faculty")]
-        public ActionResult Edit(Course course)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(course).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(course);
-        }
+    // POST: Courses/Edit/5
+    // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+    // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Faculty")]
+    public ActionResult Edit(Course course)
+    {
+      if (ModelState.IsValid)
+      {
+        db.Entry(course).State = EntityState.Modified;
+        db.SaveChanges();
+        return RedirectToAction("Index");
+      }
+      return View(course);
+    }
 
-        // GET: Courses/Delete/5
-        [Authorize(Roles ="Faculty")]
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Course course = db.Courses.Find(id);
-            if (course == null)
-            {
-                return HttpNotFound();
-            }
-            return View(course);
-        }
+    // GET: Courses/Delete/5
+    [Authorize(Roles = "Faculty")]
+    public ActionResult Delete(int? id)
+    {
+      if (id == null)
+      {
+        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+      }
+      Course course = db.Courses.Find(id);
+      if (course == null)
+      {
+        return HttpNotFound();
+      }
+      return View(course);
+    }
 
-        // POST: Courses/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles ="Faculty")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+    // POST: Courses/Delete/5
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    [Authorize(Roles = "Faculty")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Course course = db.Courses.Find(id);
+      db.Courses.Remove(course);
+      db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
     [HttpGet]
     [Authorize(Roles = "Student")]
@@ -162,7 +159,7 @@ namespace DcssePortal.Web.Controllers
 
 
     [HttpPost]
-    [Authorize(Roles ="Student")]
+    [Authorize(Roles = "Student")]
     public ActionResult Join(FormCollection forms)
     {
       if (ModelState.IsValid)
@@ -172,18 +169,20 @@ namespace DcssePortal.Web.Controllers
         var secretCode = forms["secretCode"].Trim();
         var course = db.Courses.FirstOrDefault(x => x.CourseCode == courseCode && x.Faculty.ID == instructureId);
         var currentStudents = from std in db.Students
-                             join user in db.Users on std.Email equals user.Email
-                             select std;
-        if (currentStudents.Count()==0)
+                              join user in db.Users on std.Email equals user.Email
+                              select std;
+        if (currentStudents.Count() == 0)
         {
           throw new ObjectNotFoundException("could not find student");
-          ModelState.AddModelError("identificationProblem", "Cannot identify student");
-          return View();
         }
         var currentStudent = currentStudents.FirstOrDefault();
         if (course == null)
         {
           throw new ObjectNotFoundException("could not find course");
+        }
+        if(db.Enrollments.Any(x=>x.Course.ID==course.ID && x.Student.ID == currentStudent.ID))
+        {
+          throw new Exception("Student already enrolled in given course");
         }
         if (course.SecretCode == secretCode)
         {
@@ -198,12 +197,12 @@ namespace DcssePortal.Web.Controllers
       return View();
     }
     protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+    {
+      if (disposing)
+      {
+        db.Dispose();
+      }
+      base.Dispose(disposing);
     }
+  }
 }

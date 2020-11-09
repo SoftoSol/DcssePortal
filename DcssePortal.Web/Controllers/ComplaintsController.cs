@@ -1,6 +1,6 @@
 ﻿using DcssePortal.Data;
 using DcssePortal.Model;
-
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -13,14 +13,24 @@ namespace DcssePortal.Web.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Complaints
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles ="Admin,Student")]
         public ActionResult Index()
         {
-            return View(db.Complaints.ToList());
+      List<Complaints> list;
+      if (User.IsInRole("Student"))
+      {
+        var student = db.Students.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
+        list = db.Complaints.Where(x => x.Student.ID == student.ID).ToList();
+      }
+      else
+      {
+        list = db.Complaints.ToList();
+      }
+            return View(list);
         }
 
         // GET: Complaints/Details/5
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles ="Admin,Student")]
         public ActionResult Details(int? id)
         {
             if (id == null)

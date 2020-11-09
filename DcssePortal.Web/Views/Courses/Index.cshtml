@@ -29,29 +29,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreditHour)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SecretCode)
-        </td>
-        <td>
-           @Html.ActionLink("Contents","Details","Contents",new { id=item.ID },null)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreditHour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecretCode)
+            </td>
+            <td>
+                @Html.ActionLink("Contents", "Details", "Contents", new { id = item.ID }, null)
+            </td>
+            <td>
+
+                @if (User.IsInRole("Faculty"))
+                {
+                    Html.ActionLink("Edit", "Edit", new { id = item.ID });
+                    <span> | </span>
+                }
+                @Html.ActionLink("Details", "Details", new { id = item.ID })
+                @if (User.IsInRole("Faculty"))
+                {
+                    <span>|</span>
+                    Html.ActionLink("Delete", "Delete", new { id = item.ID });
+                }
+            </td>
+        </tr>
+    }
 
 </table>

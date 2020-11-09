@@ -31,16 +31,10 @@
                     @Html.DisplayNameFor(model => model.Email)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Password)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.Phone)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Age)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PhotoUrl)
                 </th>
                 <th>
                     @Html.Label("Actions")
@@ -62,16 +56,10 @@
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Password)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.Phone)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Age)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhotoUrl)
                     </td>
                     <td>
                         <a href="@Url.Action("Edit", new { id=item.ID} )" class=" " style="font-size:20px; color:lightseagreen; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Edit">
