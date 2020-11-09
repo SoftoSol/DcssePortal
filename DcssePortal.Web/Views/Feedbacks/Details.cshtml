@@ -23,7 +23,11 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FileURL)
+            @using (Html.BeginForm("download", "Feedbacks", FormMethod.Get))
+            {
+                @Html.HiddenFor(x => x.ID)
+                <input type="submit" value="Download File" />
+            }
         </dd>
 
     </dl>

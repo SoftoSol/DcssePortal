@@ -23,12 +23,11 @@
         </dt>
 
         <dd>
-            @using (Html.BeginForm("download","Contents", FormMethod.Get))
+            @using (Html.BeginForm("download", "Contents", FormMethod.Get))
             {
                 @Html.HiddenFor(x => x.ID)
                 <input type="submit" value="Download File" />
             }
-        </dd>
         </dd>
 
         <dt>
