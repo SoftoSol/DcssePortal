@@ -34,7 +34,20 @@
             @Html.DisplayFor(model => model.Date)
         </dd>
 
-      
+
+        <dt>
+            File
+        </dt>
+
+        <dd>
+            @using(Html.BeginForm("download", "CoursesSchemes", FormMethod.Get))
+            {
+                @Html.HiddenFor(x=>x.ID)
+                <input type="submit" value="Download File"/>
+            }
+        </dd>
+
+
     </dl>
 </div>
 <p>

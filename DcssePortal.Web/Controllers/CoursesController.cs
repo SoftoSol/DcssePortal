@@ -2,6 +2,7 @@
 using DcssePortal.Model;
 
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Linq;
@@ -17,9 +18,29 @@ namespace DcssePortal.Web.Controllers
     // GET: Courses
     [Authorize(Roles = "Student, Faculty")]
     public ActionResult Index()
-        {
-            return View(db.Courses.ToList());
-        }
+    {
+      List<Course> list;
+      if (User.IsInRole("Faculty"))
+      {
+
+        var faculty = db.Faculties.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
+        list = db.Courses.Where(x => x.Faculty.ID == faculty.ID).ToList();
+        //list = Faculty();
+      }
+      else
+      {
+        var student = db.Students.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
+        list = db.Enrollments.Where(x => x.Student.ID == student.ID).Select(x => x.Course).ToList();
+      }
+      return View(list);
+    }
+
+    private List<Course> Faculty()
+    {
+      var faculty = db.Faculties.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
+     return db.Courses.Where(x => x.Faculty == faculty).ToList();
+    }
+
 
         // GET: Courses/Details/5
         [Authorize(Roles ="Student, Faculty")]

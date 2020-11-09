@@ -38,26 +38,10 @@ namespace DcssePortal.Web.Controllers
         public ActionResult Create()
         {
       return RedirectToAction("register", "account");
-      return View();
+   
         }
 
-        // POST: Faculties/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,FirstName,LastName,Email,Password,Phone,Age,Profile")] Faculty faculty)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Faculties.Add(faculty);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(faculty);
-        }
-
+       
         // GET: Faculties/Edit/5
         public ActionResult Edit(int? id)
         {
