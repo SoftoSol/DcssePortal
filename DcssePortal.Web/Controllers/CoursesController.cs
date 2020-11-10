@@ -24,7 +24,7 @@ namespace DcssePortal.Web.Controllers
       {
 
         var faculty = db.Faculties.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
-        list = db.Courses.Where(x => x.Faculty.ID == faculty.ID).ToList();
+        list = db.Courses.Include(x=>x.Feedbacks).Where(x => x.Faculty.ID == faculty.ID).ToList();
         //list = Faculty();
       }
       else

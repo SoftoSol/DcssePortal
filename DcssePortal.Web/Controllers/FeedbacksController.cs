@@ -3,6 +3,7 @@ using DcssePortal.Model;
 using DcssePortal.Web.Models;
 
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.IO;
@@ -22,8 +23,39 @@ namespace DcssePortal.Web.Controllers
     [Authorize(Roles = "Faculty,Student")]
     public ActionResult Index()
     {
+      List<Feedback> list;
+      if (User.IsInRole("Faculty"))
+      {
 
-      return View(db.Feedbacks.ToList());
+        var faculty = db.Faculties.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
+        list = db.Feedbacks.Where(x => x.Course.Faculty.ID == faculty.ID).ToList();
+        //list = Faculty();
+      }
+      else
+      {
+        var student = db.Students.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
+        list = db.Enrollments.Where(x=>x.Student.ID==student.ID).Select(x=>x.Course.Feedbacks.FirstOrDefault()).ToList();
+      }
+      return View(list);
+    }
+
+    [Authorize(Roles = "Faculty,Student")]
+    public ActionResult Course(int id)
+    {
+      List<Feedback> list;
+      if (User.IsInRole("Faculty"))
+      {
+
+        var faculty = db.Faculties.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
+        list = db.Feedbacks.Where(x => x.Course.Faculty.ID == faculty.ID && x.Course.ID==id).ToList();
+        //list = Faculty();
+      }
+      else
+      {
+        var student = db.Students.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
+        list = db.Enrollments.Where(x => x.Student.ID == student.ID && x.Course.ID == id).Select(x => x.Course.Feedbacks.FirstOrDefault()).ToList();
+      }
+      return View(list);
     }
 
     // GET: Feedbacks/Details/5

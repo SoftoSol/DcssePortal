@@ -3,6 +3,7 @@ using DcssePortal.Model;
 using DcssePortal.Web.Models;
 
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Linq;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 
 namespace DcssePortal.Web.Controllers
 {
-  [Authorize(Roles ="Admin")]
+ 
   public class ResultsController : Controller
   {
     private ApplicationDbContext db = new ApplicationDbContext();
@@ -20,10 +21,21 @@ namespace DcssePortal.Web.Controllers
     [Authorize(Roles ="Admin,Student")]
     public ActionResult Index()
     {
-      var viewModel = new CreateResultViewModel();
-      //viewModel = 
-      //viewModel.Result = new Result();
-      return View(db.Results.ToList());
+
+      List<Result> list;
+      if (User.IsInRole("Faculty"))
+      {
+
+        var faculty = db.Faculties.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
+        list = db.Results.Where(x => x.Course.Faculty.ID== faculty.ID).ToList();
+        //list = Faculty();
+      }
+      else
+      {
+        var student = db.Students.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
+        list = db.Results.Where(x => x.Student.ID == student.ID).ToList();
+      }
+      return View(list);
     }
 
     // GET: Results/Details/5
@@ -46,6 +58,7 @@ namespace DcssePortal.Web.Controllers
     // GET: Results/Create
 
     //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public ActionResult Create()
     {
       ViewBag.Courses = db.Courses.ToList();
@@ -59,6 +72,7 @@ namespace DcssePortal.Web.Controllers
     [HttpPost]
     [ValidateAntiForgeryToken]
     //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public ActionResult Create(ResultViewModel viewModel)
     {
       var result = new Result();
@@ -88,7 +102,7 @@ namespace DcssePortal.Web.Controllers
     }
 
     // GET: Results/Edit/5
-   // [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public ActionResult Edit(int? id)
     {
       if (id == null)
@@ -118,7 +132,7 @@ namespace DcssePortal.Web.Controllers
     // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-   // [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public ActionResult Edit(ResultViewModel viewModel)
     {
       var result = db.Results.Find(viewModel.ID);
@@ -140,7 +154,7 @@ namespace DcssePortal.Web.Controllers
     }
 
     // GET: Results/Delete/5
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public ActionResult Delete(int? id)
     {
       if (id == null)
@@ -158,7 +172,7 @@ namespace DcssePortal.Web.Controllers
     // POST: Results/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public ActionResult DeleteConfirmed(int id)
     {
       Result result = db.Results.Find(id);

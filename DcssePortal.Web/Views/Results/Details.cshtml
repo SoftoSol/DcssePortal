@@ -2,94 +2,115 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+            <h3>Result Detail</h3>
 
-<div>
-    <h4>Result</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Student.RegNo)
-        </dt>
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Student.RegNo)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Student.RegNo)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Student.RegNo)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Course.CourseCode)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Course.CourseCode)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Course.CourseCode)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Course.CourseCode)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.InternalMarks)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.InternalMarks)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.InternalMarks)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.InternalMarks)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ExternalMarks)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ExternalMarks)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ExternalMarks)
-        </dd>
-        <dt>
-           Obtained Marks
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ExternalMarks)
+                    </dd>
+                    <dt>
+                        Obtained Marks
+                    </dt>
 
-        <dd>
-            @(Model.InternalMarks+Model.ExternalMarks)
-        </dd>
-        <dt>
-           Grade
-        </dt>
+                    <dd>
+                        @(Model.InternalMarks+Model.ExternalMarks)
+                    </dd>
+                    <dt>
+                        Grade
+                    </dt>
 
-        <dd>
-            @if (Model.ExternalMarks + Model.InternalMarks >= 80)
-            {
-                <span>A</span>
-            }
-            else if (Model.ExternalMarks + Model.InternalMarks >= 75)
-            {
-                <span>B+</span>
-            }
-            else if (Model.ExternalMarks + Model.InternalMarks >= 70)
-            {
-                <span>B</span>
-            }
-            else if (Model.ExternalMarks + Model.InternalMarks >= 65)
-            {
-                <span>C+</span>
-            }
-            else if (Model.ExternalMarks + Model.InternalMarks >= 60)
-            {
-                <span>C</span>
-            }
-            else if (Model.ExternalMarks + Model.InternalMarks >= 55)
-            {
-                <span>D+</span>
-            }
-            else if (Model.ExternalMarks + Model.InternalMarks >= 50)
-            {
-                <span>D</span>
-            }
-            else
-            {
-                <span>F</span>
-            }
-        </dd>
+                    <dd>
+                        @if (Model.ExternalMarks + Model.InternalMarks >= 80)
+                        {
+                            <span>A</span>
+                        }
+                        else if (Model.ExternalMarks + Model.InternalMarks >= 75)
+                        {
+                            <span>B+</span>
+                        }
+                        else if (Model.ExternalMarks + Model.InternalMarks >= 70)
+                        {
+                            <span>B</span>
+                        }
+                        else if (Model.ExternalMarks + Model.InternalMarks >= 65)
+                        {
+                            <span>C+</span>
+                        }
+                        else if (Model.ExternalMarks + Model.InternalMarks >= 60)
+                        {
+                            <span>C</span>
+                        }
+                        else if (Model.ExternalMarks + Model.InternalMarks >= 55)
+                        {
+                            <span>D+</span>
+                        }
+                        else if (Model.ExternalMarks + Model.InternalMarks >= 50)
+                        {
+                            <span>D</span>
+                        }
+                        else
+                        {
+                            <span>F</span>
+                        }
+                    </dd>
 
-    </dl>
+                </dl>
+            </div>
+
+            <!--Buttons-->
+
+            <p>
+                <div class="mr-5">
+                    <a href="@Url.Action("Edit" , new { id=Model.ID})" class="btn btn-success mr-5">
+                        <i class="fas fa-edit"></i>
+                        <span>
+                            <strong>Edit</strong>
+                        </span>
+                    </a>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">
+                        <i class="fas fa-backspace"></i>
+                        <span>
+                            <strong>Back to List</strong>
+                        </span>
+                    </a>
+                </div>
+            </p>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

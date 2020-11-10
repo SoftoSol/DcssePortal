@@ -33,33 +33,60 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    @Html.ActionLink("Manage Student", "Index", "Students", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Manage Faculty", "Index", "Faculties", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Manage Admin", "Index", "Admins", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Manage Result", "Index", "Results", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Course Scheme", "Index", "CoursesSchemes", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("News", "Index", "Noticeboards", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Complaints", "Index", "Complaints", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Check DateSheet", "Index", "DateSheets", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("About Us", "Index", "Home", null, new { @class = "nav-link" })
-                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Manage Student", "Index", "Students", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Manage Faculty", "Index", "Faculties", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Manage Admin", "Index", "Admins", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Manage Result", "Index", "Results", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Course Scheme", "Index", "CoursesSchemes", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("News", "Index", "Noticeboards", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Complaints", "Index", "Complaints", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Check DateSheet", "Index", "DateSheets", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("About Us", "Index", "Home", null, new { @class = "nav-link" })
+                    </li>
+                }
+                @if (User.IsInRole("Faculty"))
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Course Scheme", "Index", "CoursesSchemes", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Courses", "Index", "Courses", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Feedbacks", "Index", "Courses", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("News", "Index", "Noticeboards", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Complaints", "Index", "Complaints", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Check DateSheet", "Index", "DateSheets", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("About Us", "Index", "Home", null, new { @class = "nav-link" })
+                    </li>
+                }
                 @*<li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown

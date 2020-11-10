@@ -8,7 +8,7 @@
 <div class="container-fluid mt-4" style="color: #566787; background: #f5f5f5; font-family: 'Varela Round', sans-serif; font-size: 15px;">
 
     <h2 class="pt-3">
-        <b>Course</b> Management
+        <b>Manage</b> Course
     </h2>
     <a href="@Url.Action("Create")" class="btn btn-success float-right mb-2">
         <i class="fas fa-plus-circle"></i>
@@ -30,7 +30,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Date)
                 </th>
-               
+
                 <th>
                     @Html.Label("Actions")
                 </th>
@@ -51,28 +51,21 @@
                         @Html.DisplayFor(modelItem => item.Date)
                     </td>
                     <td>
-
                         <a href="@Url.Action("Delete",new { id=item.ID} )" class=" " style="font-size:20px; color:red; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Delete">
                             <i class="fas fa-trash-alt"></i>
-                            @*<span>
-                            <strong>Delete</strong>
-                        </span>*@
                         </a>
                         <a href="@Url.Action("Details",new { id=item.ID} )" class=" " style="font-size:20px; color:orange; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Detail">
                             <i class="fas fa-book"></i>
-                            @*<span>
-                            <strong>Detail</strong>
-                        </span>*@
                         </a>
                     </td>
                     @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>*@
+                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        </td>*@
                 </tr>
             }
-            </tbody>
+        </tbody>
     </table>
 </div>
 

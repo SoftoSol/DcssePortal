@@ -1,74 +1,83 @@
 ﻿@model DcssePortal.Model.Student
 
 @{
-    ViewBag.Title = "Details";
+  ViewBag.Title = "Details";
+  Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+            <h3>Details Student</h3>
 
-<div>
-    <h4>Student</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.FirstName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.LastName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Batch)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Batch)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Batch)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Batch)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DOB)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DOB)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DOB)
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.PhotoUrl)
-        </dt>*@
-
-        @*<dd>
-            @Html.DisplayFor(model => model.PhotoUrl)
-        </dd>*@
-
-    </dl>
+                    <dd>
+                        @Html.DisplayFor(model => model.DOB)
+                    </dd>
+                </dl>
+            </div>
+            <p>
+                <div class="mr-5">
+                    <a href="@Url.Action("Edit" , new { id=Model.ID})" class="btn btn-success mr-5">
+                        <i class="fas fa-edit"></i>
+                        <span>
+                            <strong>Edit</strong>
+                        </span>
+                    </a>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">
+                        <i class="fas fa-backspace"></i>
+                        <span>
+                            <strong>Back to List</strong>
+                        </span>
+                    </a>
+                </div>
+            </p>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -2,55 +2,71 @@
 
 @{
     ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+            <h3>Delete Result</h3>
 
-<h2>Delete</h2>
+            <h5>Are you sure you want to delete this?</h5>
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Student.RegNo)
+                    </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Result</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Student.RegNo)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Student.RegNo)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Student.RegNo)
-        </dd>
-        
-        <dt>
-            @Html.DisplayNameFor(model => model.Course.CourseCode)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Course.CourseCode)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Course.CourseCode)
-        </dd>
-        
-        <dt>
-            @Html.DisplayNameFor(model => model.InternalMarks)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Course.CourseCode)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.InternalMarks)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.InternalMarks)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ExternalMarks)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.InternalMarks)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ExternalMarks)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ExternalMarks)
+                    </dt>
 
-    </dl>
+                    <dd>
+                        @Html.DisplayFor(model => model.ExternalMarks)
+                    </dd>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+                </dl>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                <!--Buttons-->
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions  mt-5">
+                        <button type="submit" value="Delete" class="btn btn-danger mr-5">
+                            <i class="fas fa-trash-alt icon-white"></i>
+                            <strong>Delete</strong>
+                        </button>
+                        <a href="@Url.Action("Index")" class="btn btn-secondary">
+                            <i class="fas fa-backspace"></i>
+                            <span>
+                                <strong>Back to List</strong>
+                            </span>
+                        </a>
+                    </div>
+                }
+            </div>
         </div>
-    }
+    </div>
 </div>

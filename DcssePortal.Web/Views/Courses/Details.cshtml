@@ -4,46 +4,53 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Course</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CourseCode)
-        </dt>
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+            <h2>Details</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.CourseCode)
-        </dd>
+            <div>
+                <h4>Course</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CourseCode)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CourseTitle)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CourseCode)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CourseTitle)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CourseTitle)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreditHour)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CourseTitle)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreditHour)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SecretCode)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CreditHour)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SecretCode)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.CreditHour)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SecretCode)
+                    </dt>
 
-    </dl>
+                    <dd>
+                        @Html.DisplayFor(model => model.SecretCode)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

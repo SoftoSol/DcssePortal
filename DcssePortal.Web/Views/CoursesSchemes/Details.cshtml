@@ -2,54 +2,75 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-10 col-md-8 col-lg-6">
+            <h2>Course Scheme Detail</h2>
 
-<div>
-    <h4>CoursesScheme</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Title)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Department)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Department)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Department)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Department)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-
-        <dt>
-            File
-        </dt>
-
-        <dd>
-            @using(Html.BeginForm("download", "CoursesSchemes", FormMethod.Get))
-            {
-                @Html.HiddenFor(x=>x.ID)
-                <input type="submit" value="Download File"/>
-            }
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Date)
+                    </dd>
 
 
-    </dl>
+                    <dt>
+                        File
+                    </dt>
+
+                    <dd>
+                        @using (Html.BeginForm("download", "CoursesSchemes", FormMethod.Get))
+                        {
+                            @Html.HiddenFor(x => x.ID)
+                            <input type="submit" value="Download File" />
+                        }
+                    </dd>
+
+
+                </dl>
+            </div>
+            <!--Buttons-->
+
+            <p>
+                <div class="mr-5">
+                    <a href="@Url.Action("Edit" , new { id=Model.ID})" class="btn btn-success mr-5">
+                        <i class="fas fa-edit"></i>
+                        <span>
+                            <strong>Edit</strong>
+                        </span>
+                    </a>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">
+                        <i class="fas fa-backspace"></i>
+                        <span>
+                            <strong>Back to List</strong>
+                        </span>
+                    </a>
+                </div>
+            </p>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
