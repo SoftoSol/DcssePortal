@@ -388,7 +388,6 @@
     <Content Include="Views\CoursesSchemes\Create.cshtml" />
     <Content Include="Views\CoursesSchemes\Delete.cshtml" />
     <Content Include="Views\CoursesSchemes\Details.cshtml" />
-    <Content Include="Views\CoursesSchemes\Edit.cshtml" />
     <Content Include="Views\CoursesSchemes\Index.cshtml" />
     <Content Include="Views\DateSheets\Create.cshtml" />
     <Content Include="Views\DateSheets\Delete.cshtml" />
@@ -396,7 +395,6 @@
     <Content Include="Views\DateSheets\Edit.cshtml" />
     <Content Include="Views\DateSheets\Index.cshtml" />
     <Content Include="Views\Noticeboards\Create.cshtml" />
-    <Content Include="Views\Noticeboards\Delete.cshtml" />
     <Content Include="Views\Noticeboards\Details.cshtml" />
     <Content Include="Views\Noticeboards\Edit.cshtml" />
     <Content Include="Views\Noticeboards\Index.cshtml" />

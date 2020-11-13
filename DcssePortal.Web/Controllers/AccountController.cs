@@ -61,24 +61,9 @@ namespace DcssePortal.Web.Controllers
     [AllowAnonymous]
     public ActionResult Login(string returnUrl)
     {
-      if (HttpContext.User.Identity.IsAuthenticated)
-      {
-        if (isAdminUser())
-        {
-          Helper.CurrentUserRole = eUserRoles.Admin;
-          return RedirectToAction("LoggedIn");
-        }
-        else if (isFacultyUser())
-        {
-          //Helper.CurrentUserRole = eUserRoles.Faculty;
-          return RedirectToAction("LoggedIn");
-        }
-        else
-        {
-          //Helper.CurrentUserRole = eUserRoles.Student;
-          return RedirectToAction("Index", "Students");
-        }
-      }
+      if (User.Identity.IsAuthenticated)
+        if (User.IsInRole("Admin")) return RedirectToAction("Index", "Admins");
+        else return RedirectToAction("Index", "Courses");
       ViewBag.ReturnUrl = returnUrl;
       return View();
     }
@@ -100,26 +85,9 @@ namespace DcssePortal.Web.Controllers
       {
         case SignInStatus.Success:
           {
-
-            if (returnUrl != null)
-            {
-              return RedirectToAction(returnUrl);
-            }
-            if (isAdminUser())
-            {
-              // Helper.CurrentUserRole = eUserRoles.Admin;
-              return RedirectToAction("LoggedIn");
-            }
-            else if (isFacultyUser())
-            {
-              //Helper.CurrentUserRole = eUserRoles.Faculty;
-              return RedirectToAction("LoggedIn");
-            }
-            else
-            {
-              //Helper.CurrentUserRole = eUserRoles.Student;
-              return RedirectToAction("Index", "Students");
-            }
+            if (returnUrl != null) return RedirectToAction(returnUrl);
+            if (User.IsInRole("Admin")) return RedirectToAction("Index","Admins");
+            else return RedirectToAction("Index", "Courses");
           }
         case SignInStatus.LockedOut:
           return View("Lockout");
@@ -571,65 +539,6 @@ namespace DcssePortal.Web.Controllers
       }
     }
     #endregion
-    private bool isAdminUser()
-    {
-      if (User.Identity.IsAuthenticated)
-      {
-        var user = User.Identity;
-        ApplicationDbContext applicationDbContext = new ApplicationDbContext();
-        var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(applicationDbContext));
-        var roles = applicationDbContext.Users.FirstOrDefault(x => x.UserName == user.Name).Roles.ElementAt(0);
-        if (applicationDbContext.Roles.FirstOrDefault(x=>x.Id==roles.RoleId).Name=="Admin")
-        {
-          return true;
-        }
-        else
-        {
-          return false;
-        }
-      }
-      return false;
-    }
-    [NonAction]
-    private bool isStudentUser()
-    {
-      if (User.Identity.IsAuthenticated)
-      {
-        var user = User.Identity;
-        ApplicationDbContext applicationDbContext = new ApplicationDbContext();
-        var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(applicationDbContext));
-        var roles = applicationDbContext.Users.FirstOrDefault(x => x.UserName == user.Name).Roles.ElementAt(0);
-        if (applicationDbContext.Roles.FirstOrDefault(x => x.Id == roles.RoleId).Name == "Student")
-        {
-          return true;
-        }
-        else
-        {
-          return false;
-        }
-      }
-      return false;
-    }
-    [NonAction]
-    private bool isFacultyUser()
-    {
-      if (User.Identity.IsAuthenticated)
-      {
-        var user = User.Identity;
-        ApplicationDbContext applicationDbContext = new ApplicationDbContext();
-        var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(applicationDbContext));
-        var roles = applicationDbContext.Users.FirstOrDefault(x => x.UserName == user.Name).Roles.ElementAt(0);
-        if (applicationDbContext.Roles.FirstOrDefault(x => x.Id == roles.RoleId).Name == "Faculty")
-        {
-          return true;
-        }
-        else
-        {
-          return false;
-        }
-      }
-      return false;
-    }
 
     protected async Task<bool> CreateUser(string username,string email, string password, string userRole)
     {

@@ -30,10 +30,14 @@ namespace DcssePortal.Web.Controllers
         list = db.Results.Where(x => x.Course.Faculty.ID== faculty.ID).ToList();
         //list = Faculty();
       }
-      else
+      else if (User.IsInRole("Faculty"))
       {
         var student = db.Students.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
         list = db.Results.Where(x => x.Student.ID == student.ID).ToList();
+      }
+      else
+      {
+        list = db.Results.ToList();
       }
       return View(list);
     }
@@ -81,13 +85,13 @@ namespace DcssePortal.Web.Controllers
         var studentId = Convert.ToInt32(Request.Form["Student"]);
         var courseId = Convert.ToInt32(Request.Form["Course"]);
         if (!db.Enrollments.Any(x => x.Student.ID == studentId && x.Course.ID == courseId))
-          throw new Exception("Enrollment doesnot exists");
+          ModelState.AddModelError("NullEnrollment","Enrollment doesnot exists");
         else
         {
           //result.Enrollment = db.Enrollments.FirstOrDefault(x => x.Student.ID == studentId && x.Course.ID == courseId);
           result.Student = db.Students.FirstOrDefault(x => x.ID == studentId);
           result.Course = db.Courses.FirstOrDefault(x => x.ID == courseId);
-          if (result.Student == null || result.Course == null) throw new ObjectNotFoundException();
+          if (result.Student == null || result.Course == null) ModelState.AddModelError("NullEnrollment","Could not find Enrollment");
           result.ExternalMarks = viewModel.External;
           result.InternalMarks = viewModel.Internal;
           db.Results.Add(result);
@@ -136,14 +140,14 @@ namespace DcssePortal.Web.Controllers
     public ActionResult Edit(ResultViewModel viewModel)
     {
       var result = db.Results.Find(viewModel.ID);
-      if (result == null) throw new ObjectNotFoundException("Result not found");
+      if (result == null) ModelState.AddModelError("NullResult","Result not found");
       if (ModelState.IsValid)
       {
         result.InternalMarks = viewModel.Internal;
         result.ExternalMarks = viewModel.External;
         result.Course = db.Courses.Find(viewModel.Course);
         result.Student = db.Students.Find(viewModel.Student);
-        if (result.Course == null || result.Student == null) throw new ObjectNotFoundException("Could not find Enrollment");
+        if (result.Course == null || result.Student == null) ModelState.AddModelError("NullEnrollment","Could not find Enrollment");
         db.Entry(result).State = EntityState.Modified;
         db.SaveChanges();
         return RedirectToAction("Index");

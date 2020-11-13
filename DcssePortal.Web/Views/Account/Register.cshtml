@@ -2,36 +2,10 @@
 
 @{
     ViewBag.Title = "Register";
-    Layout = null;
 
 }
-<!DocTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/fontawesome-all.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
-    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-
-
-    <style>
-        body {
-            background-color: #5F9DA1;
-        }
-    </style>
-
-</head>
-<body>
-
-
-    <div class="container mt-5">
+    <div class="container mt-5 pt-5" style="background-color:#ffecb3;">
         <div class="row justify-content-center align-items-center">
             <div class="col-10 col-md-8 col-lg-6">
                 <h2>@ViewBag.Title.</h2>
@@ -71,12 +45,13 @@
                         @Html.Label("User Role", new { @class = "control-label ml-2" })
                         <div class="col-md-12">
                             @*@Html.DropDownList("Name")*@
-                            @Html.DropDownListFor(x => x.UserRoles, new List<SelectListItem> { new SelectListItem { Text = "Admin", Value = "Admin" }, new SelectListItem { Text = "Faculty", Value = "Faculty" }, new SelectListItem { Text = "Student", Value = "Student" } }, "Select Role")
+                            @Html.DropDownListFor(x => x.UserRoles, new List<SelectListItem> { new SelectListItem { Text = "Admin", Value = "Admin" }, new SelectListItem { Text = "Faculty", Value = "Faculty" }, new SelectListItem { Text = "Student", Value = "Student" } },
+                           "Select Role",new { @class = "form-control" })
                         </div>
                     </div>
-                    <div class="form-group form-row float-right">
+                    <div class="form-group form-row float-right pb-4">
                         <div class="col-md-offset col-md-12 mt-4">
-                            <input type="submit" class="btn btn-default" value="Register" />
+                            <input type="submit" class="btn btn-primary" value="Register" />
                         </div>
                     </div>
                 }
@@ -84,12 +59,13 @@
         </div>
     </div>
 
+    @*<hr />
+    <div class="container-fluid fixed-bottom pt-5">
+        <footer class="text-center mt-5">
+            <strong>&copy; 2020 International Islamic University Islamabad</strong>
+        </footer>
+    </div>*@
 
-</body>
-</html>
 <script src="~/Scripts/jquery-3.5.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

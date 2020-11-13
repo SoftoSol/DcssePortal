@@ -1,26 +1,26 @@
 ﻿using DcssePortal.Data;
 using DcssePortal.Model;
-
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
 namespace DcssePortal.Web.Controllers
-{[Authorize(Roles ="Admin")]
+{
+  
   public class NoticeboardsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Noticeboards
-        [Authorize]
-        public ActionResult Index()
+    // GET: Noticeboards
+    [Authorize]
+    public ActionResult Index()
         {
             return View(db.Noticeboards.ToList());
         }
 
-        // GET: Noticeboards/Details/5
-        [AllowAnonymous]
+    // GET: Noticeboards/Details/5
     [Authorize]
     public ActionResult Details(int? id)
         {
@@ -55,6 +55,7 @@ namespace DcssePortal.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+        noticeboard.Date = DateTime.Now;
                 db.Noticeboards.Add(noticeboard);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -96,33 +97,33 @@ namespace DcssePortal.Web.Controllers
             return View(noticeboard);
         }
 
-        // GET: Noticeboards/Delete/5
-        //[Authorize(Roles = "Admin")]
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Noticeboard noticeboard = db.Noticeboards.Find(id);
-            if (noticeboard == null)
-            {
-                return HttpNotFound();
-            }
-            return View(noticeboard);
-        }
+        //// GET: Noticeboards/Delete/5
+        ////[Authorize(Roles = "Admin")]
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Noticeboard noticeboard = db.Noticeboards.Find(id);
+        //    if (noticeboard == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(noticeboard);
+        //}
 
-        // POST: Noticeboards/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Noticeboard noticeboard = db.Noticeboards.Find(id);
-            db.Noticeboards.Remove(noticeboard);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //// POST: Noticeboards/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //[Authorize(Roles = "Admin")]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Noticeboard noticeboard = db.Noticeboards.Find(id);
+        //    db.Noticeboards.Remove(noticeboard);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

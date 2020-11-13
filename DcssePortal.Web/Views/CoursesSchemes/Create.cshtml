@@ -5,11 +5,13 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="container mt-5">
+<div class="container mt-5 pt-5" style="background-color:#ffecb3;">
     <div class="row justify-content-center align-items-center">
         <div class="col-10 col-md-8 col-lg-6">
             <h3>Create Course Scheme</h3>
-
+            <div class="text-danger">
+                @Html.ValidationSummary(false)
+            </div>
 
             @using (Html.BeginForm("Create", "CoursesSchemes", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
@@ -17,7 +19,6 @@
 
                 <div class="form-horizontal">
                     <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group form-row mt-3 mb-1">
                         @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label ml-2" })
                         <div class="col-md-12">
@@ -42,7 +43,7 @@
 
                     <!--Buttons-->
 
-                    <div class="form-actions  mt-5">
+                    <div class="form-actions  mt-5 pb-5">
                         <button type="submit" value="Create" class="btn btn-success mr-5">
                             <strong>Create</strong>
                         </button>

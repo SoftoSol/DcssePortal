@@ -5,13 +5,12 @@
 }
 
 
-<div class="container mt-5">
+<div class="container mt-5 pt-5" style="background-color:#ffecb3;">
     <div class="row justify-content-center align-items-center">
         <div class="col-10 col-md-8 col-lg-6">
-            <h2>Details</h2>
+            <h3>Course Detail</h3>
 
             <div>
-                <h4>Course</h4>
                 <hr />
                 <dl class="dl-horizontal">
                     <dt>
@@ -47,9 +46,17 @@
 
                 </dl>
             </div>
+            <!--Buttons-->
+
             <p>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-                @Html.ActionLink("Back to List", "Index")
+                <div class="mr-5 pb-5">
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">
+                        <i class="fas fa-backspace"></i>
+                        <span>
+                            <strong>Back to List</strong>
+                        </span>
+                    </a>
+                </div>
             </p>
         </div>
     </div>

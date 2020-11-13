@@ -14,7 +14,6 @@ using System.Web.Mvc;
 
 namespace DcssePortal.Web.Controllers
 {
-  [Authorize(Roles = "Faculty")]
   public class FeedbacksController : Controller
   {
     private ApplicationDbContext db = new ApplicationDbContext();
@@ -53,7 +52,7 @@ namespace DcssePortal.Web.Controllers
       else
       {
         var student = db.Students.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
-        list = db.Enrollments.Where(x => x.Student.ID == student.ID && x.Course.ID == id).Select(x => x.Course.Feedbacks.FirstOrDefault()).ToList();
+        list = db.Enrollments.Where(x => x.Student.ID == student.ID && x.Course.ID == id).Select(x => x.Course.Feedbacks).ToList()[0];
       }
       return View(list);
     }
@@ -77,7 +76,7 @@ namespace DcssePortal.Web.Controllers
     }
 
     // GET: Feedbacks/Create
-    //[Authorize(Roles = "Faculty")]
+    [Authorize(Roles = "Faculty")]
     public ActionResult Create()
     {
       var faculty = db.Faculties.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
@@ -90,7 +89,7 @@ namespace DcssePortal.Web.Controllers
     // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    //[Authorize(Roles = "Faculty")]
+    [Authorize(Roles = "Faculty")]
     public ActionResult Create(FeedbackViewModel viewModel)
     {
       Feedback feedback = new Feedback();
@@ -123,6 +122,8 @@ namespace DcssePortal.Web.Controllers
       return View(feedback);
     }
 
+
+    [Authorize(Roles = "Faculty,Student")]
     public FileResult Download(int id)
     {
       var file = db.Feedbacks.FirstOrDefault(x => x.ID == id);

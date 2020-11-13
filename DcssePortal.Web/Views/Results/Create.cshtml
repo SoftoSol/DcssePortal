@@ -5,11 +5,13 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="container mt-5">
+<div class="container mt-5 pt-5" style="background-color:#ffecb3;">
     <div class="row justify-content-center align-items-center">
         <div class="col-10 col-md-8 col-lg-6">
             <h3>Create Result</h3>
-
+            <div class="text-danger">
+                @Html.ValidationSummary(false)
+            </div>
 
             @using (Html.BeginForm())
             {
@@ -17,24 +19,10 @@
 
                 <div class="form-horizontal">
                     <hr />
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
-                    @*<div class="form-group form-row mt-3 mb-1">
-                            @Html.LabelFor(x => Model.Student, htmlAttributes: new { @class = "control-label ml-2" })
-                            <div class="col-md-5">
-
-                                @Html.ValidationMessageFor(x => x.SelectedCountryIso3, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
 
                     @*Select Course*@
                     <div class="form-group form-row mt-3 mb-1">
                         <label for="inputState" class="ml-2">Course:</label>
-                        @*<select id="inputState" class="form-control">
-                                <option selected>Select Course</option>
-                                <option>...</option>
-                            </select>*@
                         <div class="col-md-12">
                             @Html.DropDownListFor(x => Model.Course, new SelectList(ViewBag.Courses, "ID", "CourseTitle"), htmlAttributes: new { @class = "form-control", id = "course" })
                         </div>
@@ -43,10 +31,6 @@
                     @*Select Student*@
                     <div class="form-group form-row mt-3 mb-1">
                         <label for="inputState" class="ml-2">Student:</label>
-                        @*<select id="inputState" class="form-control">
-                                <option selected>Select Student</option>
-                                <option>...</option>
-                            </select>*@
                         <div class="col-md-12">
                             @Html.DropDownListFor(x => Model.Student, new SelectList(ViewBag.Students, "ID", "RegNo"), htmlAttributes: new { @class = "form-control", id = "course" })
                         </div>
@@ -68,17 +52,9 @@
                         </div>
                     </div>
 
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.Result.Grade, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.Result.Grade, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Result.Grade, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
                     <!--Buttons-->
 
-                    <div class="form-actions  mt-5">
+                    <div class="form-actions  mt-5 pb-5">
                         <button type="submit" value="Create" class="btn btn-success mr-5">
                             <strong>Create</strong>
                         </button>
@@ -89,14 +65,6 @@
                             </span>
                         </a>
                     </div>
-
-
-
-                    @*<div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Create" class="btn btn-default" />
-                        </div>
-                    </div>*@
                 </div>
             }
         </div>

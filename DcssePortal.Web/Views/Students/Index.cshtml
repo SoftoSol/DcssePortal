@@ -14,9 +14,9 @@
     @if (User.IsInRole("Admin"))
     {
         <a href="@Url.Action("Create")" class="btn btn-success float-right mb-2">
-            <i class="fas fa-plus"></i>
+            <i class="fas fa-plus-circle"></i>
             <span>
-                <strong>Add New Student</strong>
+                <strong>Add New User</strong>
             </span>
         </a>}
 
@@ -92,16 +92,8 @@
                         </a>
                         <a href="@Url.Action("Details",new { id=item.ID} )" class=" " style="font-size:20px; color:orange; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Detail">
                             <i class="fas fa-book"></i>
-                            @*<span>
-                                    <strong>Detail</strong>
-                                </span>*@
                         </a>
                     </td>
-                    @*<td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                        </td>*@
                 </tr>
             }
         </tbody>

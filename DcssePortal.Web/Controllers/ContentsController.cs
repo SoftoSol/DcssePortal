@@ -51,7 +51,7 @@ namespace DcssePortal.Web.Controllers
       else
       {
         var student = db.Students.FirstOrDefault(x => x.Email == db.Users.FirstOrDefault(y => y.UserName == User.Identity.Name).Email);
-        list = db.Enrollments.Where(x => x.Student.ID == student.ID && id == x.Course.ID).Select(x => x.Course.Contents.FirstOrDefault()).ToList();
+        list = db.Enrollments.Where(x => x.Student.ID == student.ID && id == x.Course.ID).Select(x => x.Course.Contents).ToList()[0];
       }
       return View(list);
     }

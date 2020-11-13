@@ -73,17 +73,21 @@ namespace DcssePortal.Web.Controllers
                         select faculty;
         if (faculties.Count() == 0)
         {
-          throw new ObjectNotFoundException("faculty not found");
+          ModelState.AddModelError("NullFaculty","Faculty not found");
         }
         course.Faculty = faculties.First();
         if (db.Courses.Any(x => x.CourseCode == course.CourseCode && course.Faculty.ID == x.Faculty.ID))
         {
-          throw new Exception("Course already assigned");
+          ModelState.AddModelError("DuplicateCourse", "Course already assigned");
         }
-        db.Courses.Add(course);
+        if (course.CreditHour == 1 || course.CreditHour == 3 || course.CreditHour == 4 || course.CreditHour == 6)
+        {
+          db.Courses.Add(course);
 
-        db.SaveChanges();
-        return RedirectToAction("Index");
+          db.SaveChanges();
+          return RedirectToAction("Index");
+        }
+        else ModelState.AddModelError("InvalidCreditHours", "Invalid credit hours");
       }
 
       return View(course);
@@ -162,36 +166,48 @@ namespace DcssePortal.Web.Controllers
     [Authorize(Roles = "Student")]
     public ActionResult Join(FormCollection forms)
     {
+      var instructorId = Convert.ToInt32(forms["InstructureId"]);
+      var courseCode = forms["courseCode"];
+      var secretCode = forms["secretCode"].Trim();
+      if (!db.Faculties.Any(x => x.ID == instructorId))
+        ModelState.AddModelError("NullFaculty", "could not find instructor");
       if (ModelState.IsValid)
       {
-        var instructureId = Convert.ToInt32(forms["InstructureId"]);
-        var courseCode = forms["courseCode"];
-        var secretCode = forms["secretCode"].Trim();
-        var course = db.Courses.FirstOrDefault(x => x.CourseCode == courseCode && x.Faculty.ID == instructureId);
-        var currentStudents = from std in db.Students
-                              join user in db.Users on std.Email equals user.Email
-                              select std;
-        if (currentStudents.Count() == 0)
-        {
-          throw new ObjectNotFoundException("could not find student");
-        }
-        var currentStudent = currentStudents.FirstOrDefault();
+        var course = db.Courses.FirstOrDefault(x => x.CourseCode == courseCode && x.Faculty.ID == instructorId);
         if (course == null)
         {
-          throw new ObjectNotFoundException("could not find course");
-        }
-        if(db.Enrollments.Any(x=>x.Course.ID==course.ID && x.Student.ID == currentStudent.ID))
-        {
-          throw new Exception("Student already enrolled in given course");
-        }
-        if (course.SecretCode == secretCode)
-        {
-          course.Enrollments.Add(new Enrollment { Course = course, Student = currentStudent });
-          db.SaveChanges();
+          ModelState.AddModelError("NullCourse", "could not find course");
         }
         else
         {
-          ModelState.AddModelError("invalid key", "invalid secret key");
+          var currentStudents = from std in db.Students
+                                join user in db.Users on std.Email equals user.Email
+                                select std;
+          if (currentStudents.Count() == 0)
+          {
+            ModelState.AddModelError("NullStudent", "could not find student");
+          }
+          else
+          {
+            var currentStudent = currentStudents.FirstOrDefault();
+            
+            if (course.SecretCode == secretCode)
+            {
+              if (db.Enrollments.Any(x => x.Course.ID == course.ID && x.Student.ID == currentStudent.ID))
+              {
+                ModelState.AddModelError("DuplicateEnrollment", "Student already enrolled in given course");
+              }
+              else
+              {
+                course.Enrollments.Add(new Enrollment { Course = course, Student = currentStudent });
+                db.SaveChanges();
+              }
+            }
+            else
+            {
+              ModelState.AddModelError("invalid key", "invalid secret key");
+            }
+          }
         }
       }
       return View();

@@ -88,40 +88,6 @@ namespace DcssePortal.Web.Controllers
     }
 
 
-    // GET: CoursesSchemes/Edit/5
-    [Authorize(Roles = "Admin")]
-    public ActionResult Edit(int? id)
-    {
-      if (id == null)
-      {
-        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-      }
-      CoursesScheme coursesScheme = db.CoursesSchemes.Find(id);
-      if (coursesScheme == null)
-      {
-        return HttpNotFound();
-      }
-      return View(coursesScheme);
-    }
-
-    // POST: CoursesSchemes/Edit/5
-    // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-    // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    [Authorize(Roles = "Admin")]
-    public ActionResult Edit(CoursesScheme coursesScheme)
-    {
-      if (ModelState.IsValid)
-      {
-        coursesScheme.Date = DateTime.Now;
-        db.Entry(coursesScheme).State = EntityState.Modified;
-        db.SaveChanges();
-        return RedirectToAction("Index");
-      }
-      return View(coursesScheme);
-    }
-
     // GET: CoursesSchemes/Delete/5
     [Authorize(Roles = "Admin")]
     public ActionResult Delete(int? id)

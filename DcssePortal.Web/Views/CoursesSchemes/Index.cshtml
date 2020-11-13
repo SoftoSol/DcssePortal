@@ -5,68 +5,81 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="container-fluid mt-4" style="color: #566787; background: #f5f5f5; font-family: 'Varela Round', sans-serif; font-size: 15px;">
+<div class="container-fluid mt-5 pt-3" style="color: #566787; background: #f5f5f5; font-family: 'Varela Round', sans-serif; font-size: 15px;">
 
-    <h2 class="pt-3">
-        <b>Manage</b> Course
-    </h2>
-    <a href="@Url.Action("Create")" class="btn btn-success float-right mb-2">
-        <i class="fas fa-plus-circle"></i>
-        <span>
-            <strong>Add New Course</strong>
-        </span>
-    </a>
+    <h2>
+        @if (User.IsInRole("Admin"))
+        {
+            <span>Manage</span>} <b>Courses Scheme</b>
+        </h2>
+        @if (User.IsInRole("Admin"))
+        {
+            <a href="@Url.Action("Create")" class="btn btn-success float-right mb-2">
+                <i class="fas fa-plus-circle"></i>
+                <span>
+                    <strong>Add New Course Scheme</strong>
+                </span>
+            </a>
+        }
 
-
-    <table id="myTableName1" class="table table-bordered table-striped table-hover table-responsive-lg">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Department)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Date)
-                </th>
-
-                <th>
-                    @Html.Label("Actions")
-                </th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var item in Model)
-            {
+        <table id="myTableName1" class="table table-bordered table-striped table-hover table-responsive-lg">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Department)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>
-                    <td>
-                        <a href="@Url.Action("Delete",new { id=item.ID} )" class=" " style="font-size:20px; color:red; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Delete">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                        <a href="@Url.Action("Details",new { id=item.ID} )" class=" " style="font-size:20px; color:orange; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Detail">
-                            <i class="fas fa-book"></i>
-                        </a>
-                    </td>
-                    @*<td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                        </td>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Department)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+
+                    <th>
+                        File
+                    </th>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <th>
+                            Actions
+                        </th>
+                    }
+
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Department)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Download", new { id=item.ID})">
+                                Download
+                            </a>
+                        </td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td>
+
+                                <a href="@Url.Action("Delete", new { id = item.ID })" class=" " style="font-size:20px; color:red; display:inline-block; margin-right:15px;" data-toggle="tooltip" title="Delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
 </div>
 
 <script>

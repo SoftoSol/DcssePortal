@@ -25,8 +25,7 @@
 </head>
 <body>
     <img class="img-responsive" style="width:100%; height:130px;" src="~/Images/headerpic.PNG">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="font-size:15px">
-        @*<a class="navbar-brand" href="#">Navbar</a>*@
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="font-size:17px">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,146 +34,111 @@
             <ul class="navbar-nav mr-auto">
                 @if (User.IsInRole("Admin"))
                 {
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         @Html.ActionLink("Manage Student", "Index", "Students", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         @Html.ActionLink("Manage Faculty", "Index", "Faculties", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         @Html.ActionLink("Manage Admin", "Index", "Admins", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         @Html.ActionLink("Manage Result", "Index", "Results", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         @Html.ActionLink("Course Scheme", "Index", "CoursesSchemes", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         @Html.ActionLink("News", "Index", "Noticeboards", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         @Html.ActionLink("Complaints", "Index", "Complaints", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         @Html.ActionLink("Check DateSheet", "Index", "DateSheets", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("About Us", "Index", "Home", null, new { @class = "nav-link" })
+                    <li class="nav-item active">
+                        @Html.ActionLink("About Us", "Contact", "Home", null, new { @class = "nav-link" })
                     </li>
                 }
                 @if (User.IsInRole("Faculty"))
                 {
-                    <li class="nav-item">
-                        @Html.ActionLink("Course Scheme", "Index", "CoursesSchemes", null, new { @class = "nav-link" })
+                    <li class="nav-item active">
+                        @Html.ActionLink("Home", "Index", "Courses", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Courses", "Index", "Courses", null, new { @class = "nav-link" })
+                    <li class="nav-item active">
+                        @Html.ActionLink("Upload Lecture", "Index", "Contents", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Feedbacks", "Index", "Courses", null, new { @class = "nav-link" })
+                    <li class="nav-item active">
+                        @Html.ActionLink("Faculty News", "Index", "Noticeboards", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("News", "Index", "Noticeboards", null, new { @class = "nav-link" })
+                    <li class="nav-item active">
+                        @Html.ActionLink("Give Course Feedbacks", "Index", "Feedbacks", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Complaints", "Index", "Complaints", null, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         @Html.ActionLink("Check DateSheet", "Index", "DateSheets", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("About Us", "Index", "Home", null, new { @class = "nav-link" })
+                    <li class="nav-item active">
+                        @Html.ActionLink("Course Scheme", "Index", "CoursesSchemes", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item active">
+                        @Html.ActionLink("About Us", "Contact", "Home", null, new { @class = "nav-link" })
                     </li>
                 }
-                @*<li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-        </li>*@
+                @if (User.IsInRole("Student"))
+                {
+                    <li class="nav-item active">
+                        @Html.ActionLink("Courses", "Index", "Courses", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item active">
+                        @Html.ActionLink("Course Scheme", "Index", "CoursesSchemes", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item active">
+                        @Html.ActionLink("News", "Index", "Noticeboards", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item active">
+                        @Html.ActionLink("Complaints", "Index", "Complaints", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item active">
+                        @Html.ActionLink("Check DateSheet", "Index", "DateSheets", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item active">
+                        @Html.ActionLink("Results", "Index", "Results", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item active">
+                        @Html.ActionLink("About Us", "Contact", "Home", null, new { @class = "nav-link" })
+                    </li>
+                }
             </ul>
 
-            @*<form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>*@
         </div>
         <ul class="navbar-nav navbar-right" style="clear: both;">
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <strong style="font-size:20px;">My Account</strong> 
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#">Profile</a>
-                   
-                        <a class="dropdown-item" href="@Url.Action("LogOff", "Account")">Logout</a>
-                </div>
-            </li>
+            @if (User.Identity.IsAuthenticated) { 
+                <li class="nav-item ">
+                    <a class="nav-link" href="@Url.Action("LogOff", "Account")" role="button">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>
+                            <strong style="font-size:20px;">Log Off</strong>
+                        </span>
+                    </a>
 
-
-
-            @*<li>
-                <a href="@Url.Action("Index", "Home")" class="nav-link">
-                    <i class="fas fa-sign-in-alt" style="font-size:20px;"></i>
+                </li>
+            }
+            else{
+            <li class="nav-item ">
+                <a class="nav-link" href="@Url.Action("Login", "Account")" role="button">
+                    <i class="fas fa-sign-out-alt"></i>
                     <span>
-                        <strong style="font-size:20px;">Logout</strong>
+                        <strong style="font-size:20px;">Log in</strong>
                     </span>
                 </a>
-            </li>*@
+
+            </li>
+            }
         </ul>
     </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Faculty Management", "Index", "Faculties")</li>
-                    <li>@Html.ActionLink("Results Management", "Index", "Results")</li>
-                    <li>@Html.ActionLink("Course Scheme", "Index", "CoursesSchemes")</li>
-                    <li>@Html.ActionLink("News", "Index", "Noticeboards")</li>
-                    <li>@Html.ActionLink("Complaints", "Index", "Complaints")</li>
-                    <li>@Html.ActionLink("Check DateSheet", "Index", "DateSheets")</li>
-                    <li>@Html.ActionLink("Student", "Index", "Students")</li>
-                    <li>@Html.ActionLink("About Us", "Index", "Home")</li>
-
-                </ul>
-
-            </div>
-
-        </div>*@
 
     @RenderBody()
 
